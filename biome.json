@@ -9,6 +9,9 @@
 	},
 	"linter": {
 		"rules": {
+			"suspicious": {
+				"noUnknownAtRules": "off"
+			},
 			"style": {
 				"noEnum": "error"
 			},

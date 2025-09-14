@@ -28,7 +28,7 @@ export default function RootLayout({
 	return (
 		<html className="h-full" lang="en">
 			<body
-				className={`${nunito.className} h-full w-full overflow-hidden antialiased grid grid-rows-[auto_1fr] bg-muted`}
+				className={`${nunito.className} h-full w-full overflow-hidden antialiased bg-muted`}
 			>
 				{children}]
 			</body>
