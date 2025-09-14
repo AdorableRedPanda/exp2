@@ -1,18 +1,47 @@
 import type React from 'react';
+import { useState } from 'react';
+import { useTransition } from 'react';
 
-import { TextForm } from '@/components/TextForm';
-import { TransactionItem } from '@/components/TransactionItem';
-import { data } from '@/constants';
+import { Loader, SendHorizontal } from 'lucide-react';
 
-export const TransactionsList: React.FC = () => (
-	<div className="h-full w-full grid grid-rows-[1fr_auto]">
-		<ul className="list-none overflow-auto">
-			{data.map((t) => (
-				<li key={t.id}>
-					<TransactionItem transaction={t} />
-				</li>
-			))}
-		</ul>
-		<TextForm onSubmit={console.error} />
-	</div>
-);
+import { Button } from '@/lib/components';
+import { transactions } from '@/server';
+import { parseInput } from '@/server/parseInput';
+
+import { TextForm } from './TextForm';
+import { TransactionView } from './TransactionView';
+
+export const useList = () => {
+	const [state, setState] = useState(transactions);
+	const [loading, startTransition] = useTransition();
+
+	const addItem = (t: Transaction) => setState((prev) => [t, ...prev]);
+
+	const parse = (input: string) => {
+		startTransition(() => parseInput(input).then(addItem));
+	};
+
+	return { loading, parse, state };
+};
+
+export const TransactionsList: React.FC = () => {
+	const { loading, parse, state } = useList();
+
+	return (
+		<div className="h-full w-full grid grid-rows-[1fr_auto]">
+			<ul className="list-none overflow-auto">
+				{state.map((t) => (
+					<li key={t.id}>
+						<TransactionView transaction={t} />
+					</li>
+				))}
+			</ul>
+			<TextForm onSubmit={parse}>
+				<Button disabled={loading} type="submit">
+					{loading && <Loader className="animate-spin" />}
+					{!loading && <SendHorizontal />}
+				</Button>
+			</TextForm>
+		</div>
+	);
+};

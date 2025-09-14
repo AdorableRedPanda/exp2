@@ -1,13 +1,13 @@
 import type React from 'react';
 import { useState } from 'react';
 
-import { Button, Input } from '@/lib/components';
+import { Input } from '@/lib/components';
 
-interface Props {
+interface Props extends React.PropsWithChildren {
 	onSubmit: (text: string) => void;
 }
 
-export const TextForm: React.FC<Props> = ({ onSubmit }) => {
+export const TextForm: React.FC<Props> = ({ children, onSubmit }) => {
 	const [text, setText] = useState('');
 
 	const handleSubmit = (e: React.FormEvent) => {
@@ -22,7 +22,7 @@ export const TextForm: React.FC<Props> = ({ onSubmit }) => {
 
 	return (
 		<form
-			className="grid grid-cols-[1fr_auto] gap-2 p-2 border-t"
+			className="grid grid-cols-[1fr_auto] gap-2 p-2"
 			onSubmit={handleSubmit}
 		>
 			<Input
@@ -31,7 +31,7 @@ export const TextForm: React.FC<Props> = ({ onSubmit }) => {
 				placeholder="Enter text"
 				value={text}
 			/>
-			<Button type="submit">Submit</Button>
+			{children}
 		</form>
 	);
 };

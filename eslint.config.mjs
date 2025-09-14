@@ -75,7 +75,7 @@ export default [
 			curly: ['error', 'all'],
 			'max-depth': ['error', 2],
 			'max-nested-callbacks': ['error', 3],
-			'no-console': ['error', { allow: ['error'] }],
+			'no-console': ['error', { allow: ['error', 'info'] }],
 			'no-restricted-syntax': [
 				'error',
 				{

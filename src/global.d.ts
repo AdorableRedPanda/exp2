@@ -9,8 +9,8 @@ declare global {
 
 	interface TransactionData {
 		amount: number;
-		comment: string;
 		date: DateString;
+		tags: string[];
 		type: TransactionType;
 	}
 
