@@ -1,0 +1,23 @@
+{
+	"files": {
+		"includes": ["**", "!.next", "!node_modules"]
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single"
+		}
+	},
+	"linter": {
+		"rules": {
+			"style": {
+				"noEnum": "error"
+			},
+			"complexity": {
+				"noForEach": "off"
+			},
+			"correctness": {
+				"noUnusedImports": "error"
+			}
+		}
+	}
+}
