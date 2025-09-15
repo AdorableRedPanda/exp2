@@ -1,4 +1,5 @@
 import type React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useTransition } from 'react';
 
@@ -7,15 +8,19 @@ import { Loader, SendHorizontal } from 'lucide-react';
 import type { Transaction } from '@/types';
 
 import { Button } from '@/lib/components';
-import { transactions } from '@/server';
 import { parseInput } from '@/server/parseInput';
+import { getAll } from '@/server/txns';
 
 import { TextForm } from './TextForm';
 import { TransactionView } from './TransactionView';
 
 export const useList = () => {
-	const [state, setState] = useState(transactions);
+	const [state, setState] = useState<Transaction[]>([]);
 	const [loading, startTransition] = useTransition();
+
+	useEffect(() => {
+		getAll().then(setState);
+	}, []);
 
 	const addItem = (t: Transaction) => setState((prev) => [t, ...prev]);
 

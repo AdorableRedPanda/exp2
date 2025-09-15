@@ -22,7 +22,8 @@ export const buildTransaction = (
 	data: Partial<TransactionData>,
 ): Transaction => ({
 	amount: 0,
-	date: stringifyDate(new Date()),
+	// @ts-expect-error
+	date: new Date(),
 	id: newId(),
 	tags: [],
 	type: 'expense',

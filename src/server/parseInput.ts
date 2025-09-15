@@ -2,6 +2,7 @@
 
 import OpenAI from 'openai';
 
+import { create } from '@/server/txns';
 import { buildTransaction } from '@/server/utils';
 
 const API_KEY = process.env.GROQ_API_KEY as string;
@@ -47,5 +48,5 @@ export async function parseInput(input: string) {
 
 	const data = JSON.parse(response.output_text);
 
-	return buildTransaction(data);
+	return await create(buildTransaction(data));
 }

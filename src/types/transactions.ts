@@ -1,8 +1,6 @@
-import type { DateString, ID } from './utils';
+import type { DateString, WithId } from './utils';
 
-export interface Transaction extends TransactionData {
-	id: ID;
-}
+export type Transaction = TransactionData & WithId;
 
 export interface TransactionData {
 	amount: number;
