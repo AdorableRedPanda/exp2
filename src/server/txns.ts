@@ -1,8 +1,10 @@
 'use server';
 
-import { prisma } from '@/server/prisma';
-import { stringifyDate } from '@/server/utils';
 import type { Transaction, TransactionData } from '@/types';
+
+import { prisma } from '@/server/prisma';
+
+import { stringifyDate } from './utils';
 
 export const getAll = async () => {
 	const data = await prisma.transaction.findMany({});

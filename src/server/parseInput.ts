@@ -3,7 +3,8 @@
 import OpenAI from 'openai';
 
 import { create } from '@/server/txns';
-import { buildTransaction } from '@/server/utils';
+
+import { buildTransaction } from './utils';
 
 const API_KEY = process.env.GROQ_API_KEY as string;
 const API_URL = process.env.GROQ_URL as string;
