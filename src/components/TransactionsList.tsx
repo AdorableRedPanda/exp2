@@ -4,6 +4,8 @@ import { useTransition } from 'react';
 
 import { Loader, SendHorizontal } from 'lucide-react';
 
+import type { Transaction } from '@/types';
+
 import { Button } from '@/lib/components';
 import { transactions } from '@/server';
 import { parseInput } from '@/server/parseInput';

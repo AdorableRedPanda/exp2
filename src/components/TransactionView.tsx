@@ -1,5 +1,7 @@
 import type React from 'react';
 
+import type { Transaction } from '@/types';
+
 import { Badge } from '@/lib/components';
 import { cn } from '@/lib/utils';
 import { getDateLabel } from '@/server';

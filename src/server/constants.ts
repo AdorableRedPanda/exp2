@@ -1,3 +1,5 @@
+import type { Transaction } from '@/types';
+
 export const transactions: Transaction[] = [
 	{
 		amount: 400,
