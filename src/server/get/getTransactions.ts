@@ -2,11 +2,15 @@
 
 import type { Transaction } from '@/types';
 
-import { prisma } from './prisma';
-import { stringifyDate } from './utils';
+import { prisma } from '../prisma';
+import { stringifyDate } from '../utils';
 
-export const getAll = async () => {
-	const data = await prisma.transaction.findMany({});
+export const getTransactions = async () => {
+	const data = await prisma.transaction.findMany({
+		orderBy: {
+			date: 'desc',
+		},
+	});
 
 	return data.map(
 		(t): Transaction => ({

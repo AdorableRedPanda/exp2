@@ -9,7 +9,7 @@ import type { Transaction } from '@/types';
 
 import { Button } from '@/lib/components';
 import { handleInput } from '@/server/actions';
-import { getAll } from '@/server/txns';
+import { getTransactions } from '@/server/get';
 
 import { TextForm } from './TextForm';
 import { TransactionView } from './TransactionView';
@@ -19,7 +19,7 @@ export const useList = () => {
 	const [loading, startTransition] = useTransition();
 
 	useEffect(() => {
-		getAll().then(setState);
+		getTransactions().then(setState);
 	}, []);
 
 	const addItem = (t: Transaction) => setState((prev) => [t, ...prev]);
