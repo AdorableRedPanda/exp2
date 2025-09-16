@@ -8,7 +8,7 @@ import { Loader, SendHorizontal } from 'lucide-react';
 import type { Transaction } from '@/types';
 
 import { Button } from '@/lib/components';
-import { parseInput } from '@/server/parseInput';
+import { handleInput } from '@/server/actions';
 import { getAll } from '@/server/txns';
 
 import { TextForm } from './TextForm';
@@ -25,7 +25,7 @@ export const useList = () => {
 	const addItem = (t: Transaction) => setState((prev) => [t, ...prev]);
 
 	const parse = (input: string) => {
-		startTransition(() => parseInput(input).then(addItem));
+		startTransition(() => handleInput(input).then(addItem));
 	};
 
 	return { loading, parse, state };

@@ -1,9 +1,8 @@
 'use server';
 
-import type { Transaction, TransactionData } from '@/types';
+import type { Transaction } from '@/types';
 
-import { prisma } from '@/server/prisma';
-
+import { prisma } from './prisma';
 import { stringifyDate } from './utils';
 
 export const getAll = async () => {
@@ -18,12 +17,4 @@ export const getAll = async () => {
 			type: t.type,
 		}),
 	);
-};
-
-export const create = async (data: TransactionData): Promise<Transaction> => {
-	const result = await prisma.transaction.create({
-		data,
-	});
-
-	return <Transaction>{ ...data, id: result.id };
 };

@@ -4,7 +4,7 @@ import type { Transaction } from '@/types';
 
 import { Badge } from '@/lib/components';
 import { cn } from '@/lib/utils';
-import { getDateLabel } from '@/server';
+import { getDateLabel } from '@/server/utils';
 
 import { TagsView } from './TagsView';
 
@@ -17,7 +17,7 @@ export const TransactionView: React.FC<Props> = ({ transaction }) => {
 
 	return (
 		<div className="bg-background w-full gap-3 items-start flex justify-between min-h-14 p-2 border-b transition">
-			<div className="w-full">
+			<div className="w-full flex flex-col gap-2">
 				<Badge className="font-semibold" variant="outline">
 					{getDateLabel(date)}
 				</Badge>

@@ -9,4 +9,4 @@ export interface TransactionData {
 	type: TransactionType;
 }
 
-type TransactionType = 'expense' | 'income';
+export type TransactionType = 'expense' | 'income';

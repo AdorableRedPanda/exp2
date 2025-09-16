@@ -37,3 +37,10 @@ export const getDateLabel = (d: DateString) =>
 		minute: 'numeric',
 		month: 'short',
 	});
+
+export const txnFromAny = (data: any): TransactionData => ({
+	amount: Math.abs(data.amount),
+	date: stringifyDate(new Date()),
+	tags: data.tags,
+	type: data.type,
+});
