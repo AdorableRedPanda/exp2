@@ -35,5 +35,5 @@ export const parseTransaction = async (input: string) => {
 		},
 	});
 
-	return JSON.parse(response.output_text);
+	return <unknown>JSON.parse(response.output_text);
 };

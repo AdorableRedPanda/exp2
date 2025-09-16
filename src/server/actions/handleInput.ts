@@ -6,10 +6,10 @@ import { llm } from '../llm';
 import { prisma } from '../prisma';
 import { txnFromAny } from '../utils';
 
-export const handleInput = async (input: string): Promise<Transaction> => {
+export const handleInput = async (input: string): Promise<Transaction[]> => {
 	const parsed = await llm.parseTransaction(input);
 
-	const data = txnFromAny(parsed);
+	const data = txnFromAny(parsed as {});
 	// todo: use special type of support iso on frontend
 	const date = new Date();
 
@@ -17,5 +17,5 @@ export const handleInput = async (input: string): Promise<Transaction> => {
 		data: { ...data, date },
 	});
 
-	return { ...data, id: created.id };
+	return [{ ...data, id: created.id }];
 };

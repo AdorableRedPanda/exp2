@@ -1,0 +1,1 @@
+export { preventBubble } from './preventBubble';
