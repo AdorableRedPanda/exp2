@@ -34,11 +34,11 @@ export const FormButtons: React.FC<Props> = ({ onDelete }) => {
 	}
 
 	return (
-		<div className="w-full flex gap-2 justify-end">
-			<Button onClick={toggleDelete} size="sm" variant="destructive">
+		<div className="w-full flex gap-2 justify-end items-center">
+			<Button onClick={toggleDelete} variant="destructive">
 				<Trash2 />
 			</Button>
-			<LoadingButton className="p-4" loading={updating} size="sm">
+			<LoadingButton loading={updating}>
 				<Save />
 			</LoadingButton>
 		</div>

@@ -22,7 +22,7 @@ export const DeletingMode: React.FC<Props> = ({
 	onCancel,
 	onDelete,
 }) => (
-	<div className="w-full flex gap-3 justify-end items-center">
+	<div className="w-full flex gap-2 justify-end items-center">
 		<div className="text-destructive flex gap-1 flex-1 items-center justify-end">
 			<AlertCircleIcon size={16} />
 			{DeleteMessage}
@@ -36,7 +36,7 @@ export const DeletingMode: React.FC<Props> = ({
 		>
 			<Trash2 />
 		</LoadingButton>
-		<Button onClick={onCancel} size="icon" type="button" variant="outline">
+		<Button onClick={onCancel} type="button" variant="secondary">
 			<Undo2 />
 		</Button>
 	</div>

@@ -20,8 +20,8 @@ export const TransactionView: React.FC<Props> = ({ transaction }) => {
 
 	return (
 		<button
-			className="bg-background w-full gap-3 items-start flex justify-between min-h-14 p-2 border-b transition"
-			onDoubleClick={openEdit}
+			className="cursor-pointer bg-background w-full gap-3 items-start flex justify-between min-h-14 p-2 border-b transition"
+			onClick={openEdit}
 			type="button"
 		>
 			<div className="w-full flex flex-col gap-2">

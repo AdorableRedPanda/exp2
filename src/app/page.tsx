@@ -1,5 +1,4 @@
-import { AppHeader } from '@/components';
-import { TransactionsList } from '@/components/TransactionsList';
+import { AppHeader, Transactions } from '@/components';
 import { getTransactions } from '@/server/get';
 
 export default async function Home() {
@@ -8,7 +7,7 @@ export default async function Home() {
 		<div className="h-full w-full max-w-xl grid grid-rows-[auto_1fr] m-auto">
 			<AppHeader />
 			<main className="bg-background overflow-hidden">
-				<TransactionsList transactions={transactions} />
+				<Transactions transactions={transactions} />
 			</main>
 		</div>
 	);
