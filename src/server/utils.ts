@@ -76,7 +76,7 @@ export const parseTags = (t: unknown): string[] => {
 
 	return [];
 };
-
+type ParseArg = Record<string, unknown>;
 export const txnFromAny = (t: Record<string, unknown>): TransactionData => {
 	if (!isObject(t)) {
 		throw new Error('Invalid transaction format');
@@ -123,3 +123,5 @@ export const parseFiles = async (files: File[]): Promise<TransactionData[]> => {
 
 	return result;
 };
+
+export const parseAny = (arg: ParseArg) => txnFromAny(arg);

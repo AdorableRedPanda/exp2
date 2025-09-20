@@ -1,0 +1,1 @@
+export { StringsInput } from './StringsInput';
