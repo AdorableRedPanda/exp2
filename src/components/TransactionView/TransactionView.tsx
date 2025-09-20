@@ -7,7 +7,7 @@ import { getDateLabel } from '@/server/utils';
 import { Badge } from '@/shadcn/components';
 import { cn } from '@/shadcn/utils';
 
-import { TagsView } from './TagsView';
+import { TagsView } from './components';
 
 interface Props {
 	transaction: Transaction;
