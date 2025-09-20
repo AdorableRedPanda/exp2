@@ -1,6 +1,8 @@
 import { AppHeader, Transactions } from '@/components';
 import { getTransactions } from '@/server/get';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
 	const transactions = await getTransactions();
 	return (
