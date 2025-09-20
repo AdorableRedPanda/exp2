@@ -10,6 +10,7 @@ export const useInputForm = () => {
 	const loading = parsing || uploading;
 
 	const onSubmit = (ev: FormEvent) => {
+		ev.preventDefault();
 		const form = ev.target as HTMLFormElement;
 		const input = parseForm(form);
 
