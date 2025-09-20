@@ -5,6 +5,7 @@ import { Loader, SendHorizontal } from 'lucide-react';
 
 import type { Transaction } from '@/types';
 
+import { TransactionEditProvider } from '@/components/TransactionEditProvider';
 import { handleInput, handleUpload } from '@/server/actions';
 import { getTransactions } from '@/server/get';
 import { Button } from '@/shadcn/components';
@@ -44,22 +45,24 @@ export const TransactionsList: React.FC = () => {
 	const { loading, parse, state, upload } = useList();
 
 	return (
-		<FilesDropzone extensions={ValidExtensions} onDrop={upload}>
-			<div className="h-full w-full grid grid-rows-[1fr_auto]">
-				<ul className="list-none overflow-auto">
-					{state.map((t) => (
-						<li key={t.id}>
-							<TransactionView transaction={t} />
-						</li>
-					))}
-				</ul>
-				<TextForm onSubmit={parse}>
-					<Button disabled={loading} type="submit">
-						{loading && <Loader className="animate-spin" />}
-						{!loading && <SendHorizontal />}
-					</Button>
-				</TextForm>
-			</div>
-		</FilesDropzone>
+		<TransactionEditProvider>
+			<FilesDropzone extensions={ValidExtensions} onDrop={upload}>
+				<div className="h-full w-full grid grid-rows-[1fr_auto]">
+					<ul className="list-none overflow-auto">
+						{state.map((t) => (
+							<li key={t.id}>
+								<TransactionView transaction={t} />
+							</li>
+						))}
+					</ul>
+					<TextForm onSubmit={parse}>
+						<Button disabled={loading} type="submit">
+							{loading && <Loader className="animate-spin" />}
+							{!loading && <SendHorizontal />}
+						</Button>
+					</TextForm>
+				</div>
+			</FilesDropzone>
+		</TransactionEditProvider>
 	);
 };

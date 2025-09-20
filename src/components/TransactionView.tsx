@@ -7,6 +7,7 @@ import { Badge } from '@/shadcn/components';
 import { cn } from '@/shadcn/utils';
 
 import { TagsView } from './TagsView';
+import { useOpenEdit } from '@/components/TransactionEditProvider';
 
 interface Props {
 	transaction: Transaction;
@@ -15,8 +16,13 @@ interface Props {
 export const TransactionView: React.FC<Props> = ({ transaction }) => {
 	const { amount, date, tags, type } = transaction;
 
+	const { openEdit } = useOpenEdit(transaction);
+
 	return (
-		<div className="bg-background w-full gap-3 items-start flex justify-between min-h-14 p-2 border-b transition">
+		<div
+			onDoubleClick={openEdit}
+			className="bg-background w-full gap-3 items-start flex justify-between min-h-14 p-2 border-b transition"
+		>
 			<div className="w-full flex flex-col gap-2">
 				<Badge className="font-semibold" variant="outline">
 					{getDateLabel(date)}
