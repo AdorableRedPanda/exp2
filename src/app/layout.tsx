@@ -5,6 +5,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 import { Nunito } from 'next/font/google';
+import NextTopLoader from 'nextjs-toploader';
+
+import { Toaster } from '@/shadcn/components';
 
 const nunito = Nunito({
 	display: 'swap',
@@ -31,6 +34,12 @@ export default function RootLayout({
 				className={`${nunito.className} h-full w-full overflow-hidden antialiased bg-muted`}
 			>
 				{children}]
+				<Toaster
+					className="toaster group absolute"
+					position="top-center"
+					richColors
+				/>
+				<NextTopLoader color="white" showSpinner={false} />
 			</body>
 		</html>
 	);
