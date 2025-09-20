@@ -6,9 +6,9 @@
 		"dev": "next dev --turbopack",
 		"build": "next build --turbopack",
 		"start": "next start",
-		"lint:biome": "biome format --write ./ && biome lint --write ./",
+		"lint:biome": "biome format --write ./ && biome lint  --write --unsafe ./",
 		"lint:eslint": "eslint ./ --fix",
-		"lint": "npm run lint:eslint && npm run lint:biome",
+		"lint": "npm run lint:biome && npm run lint:eslint",
 		"typecheck": "tsc --noEmit",
 		"prisma:generate": "prisma generate"
 	},

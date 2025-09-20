@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import { Badge } from '@/lib/components';
+import { Badge } from '@/shadcn/components';
 
 interface Props {
 	tags: string[];

@@ -74,6 +74,7 @@ export default [
 		rules: {
 			curly: ['error', 'all'],
 			'max-depth': ['error', 2],
+			'max-lines-per-function': ['error', 50],
 			'max-nested-callbacks': ['error', 3],
 			'no-console': ['error', { allow: ['error', 'info'] }],
 			'no-restricted-syntax': [

@@ -3,4 +3,4 @@ export type {
 	TransactionData,
 	TransactionType,
 } from './transactions';
-export type { DateString, ID, WithId } from './utils';
+export type { ActionHandler, ID, WithId } from './utils';

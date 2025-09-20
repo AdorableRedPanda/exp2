@@ -2,9 +2,9 @@ import type React from 'react';
 
 import type { Transaction } from '@/types';
 
-import { Badge } from '@/lib/components';
-import { cn } from '@/lib/utils';
 import { getDateLabel } from '@/server/utils';
+import { Badge } from '@/shadcn/components';
+import { cn } from '@/shadcn/utils';
 
 import { TagsView } from './TagsView';
 

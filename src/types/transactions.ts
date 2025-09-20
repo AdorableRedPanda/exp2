@@ -1,4 +1,4 @@
-import type { DateString, WithId } from './utils';
+import type { WithId } from './utils';
 
 export type Transaction = TransactionData & WithId;
 
@@ -10,3 +10,5 @@ export interface TransactionData {
 }
 
 export type TransactionType = 'expense' | 'income';
+
+type DateString = string;

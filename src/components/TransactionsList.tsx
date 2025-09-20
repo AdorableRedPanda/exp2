@@ -5,9 +5,9 @@ import { Loader, SendHorizontal } from 'lucide-react';
 
 import type { Transaction } from '@/types';
 
-import { Button } from '@/lib/components';
 import { handleInput, handleUpload } from '@/server/actions';
 import { getTransactions } from '@/server/get';
+import { Button } from '@/shadcn/components';
 
 import { FilesDropzone } from './FilesDropzone';
 import { TextForm } from './TextForm';
@@ -23,7 +23,7 @@ export const useList = () => {
 
 	useEffect(() => {
 		fetchAll();
-	}, [fetchAll]);
+	}, []);
 
 	const parse = (input: string) => {
 		setLoading(true);

@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useState } from 'react';
 
-import { Input } from '@/lib/components';
+import { Input } from '@/shadcn/components';
 
 interface Props extends React.PropsWithChildren {
 	onSubmit: (text: string) => void;

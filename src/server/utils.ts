@@ -1,4 +1,4 @@
-import type { DateString, Transaction, TransactionData } from '@/types';
+import type { Transaction, TransactionData } from '@/types';
 
 export const stringifyDate = (d: Date) => {
 	const date = d.toLocaleDateString('en-CA');
@@ -30,7 +30,7 @@ export const buildTransaction = (
 	...data,
 });
 
-export const getDateLabel = (d: DateString) =>
+export const getDateLabel = (d: string) =>
 	new Date(d).toLocaleDateString('en-GB', {
 		day: 'numeric',
 		hour: 'numeric',

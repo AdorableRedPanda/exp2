@@ -4,8 +4,8 @@ import type React from 'react';
 
 import { Ban, UploadCloud } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
-import { preventBubble } from '@/utils';
+import { cn } from '@/shadcn/utils';
+import { noop, preventBubble } from '@/utils';
 
 import { useFilesDnD } from './hooks';
 
@@ -14,48 +14,39 @@ interface Props extends React.PropsWithChildren {
 	onDrop: (files: File[]) => void;
 }
 
+const overlayCls = 'fixed inset-0 flex items-center justify-center z-50';
+const messageCls =
+	'text-2xl font-bold p-6 flex flex-col items-center justify-center gap-6 text-white';
+
 export const FilesDropzone: React.FC<Props> = ({
 	children,
 	extensions,
-	onDrop,
+	onDrop: handleDrop,
 }) => {
-	const {
-		onDrop: _onDrop,
-		onEnter: _onEnter,
-		onLeave: _onLeave,
-		state,
-	} = useFilesDnD(onDrop, extensions);
+	const { onDrop, onEnter, onLeave, state } = useFilesDnD(
+		handleDrop,
+		extensions,
+	);
 
-	const noop = (_: React.DragEvent) => {};
-	const handleDrop = preventBubble(_onDrop);
-	const onEnter = preventBubble(_onEnter);
-	const onLeave = preventBubble(_onLeave);
-	const onDragOver = preventBubble(noop);
-
-	const overlayCls = 'fixed inset-0 flex items-center justify-center z-50';
 	const draggingCls = cn(
 		overlayCls,
 		state !== 'dragging' && 'hidden',
 		'bg-slate-600/70 animate-in fade-in',
 	);
-
 	const errorCls = cn(
 		overlayCls,
 		state !== 'error' && 'hidden',
 		'bg-red-900/60 animate-in fade-in',
 	);
 
-	const messageCls =
-		'text-2xl font-bold p-6 flex flex-col items-center justify-center gap-6 text-white';
-
 	return (
 		<div
 			aria-label="File drop zone"
 			className="relative w-full h-full"
-			onDragEnter={onEnter}
-			onDragLeave={onLeave}
-			onDragOver={onDragOver}
-			onDrop={handleDrop}
+			onDragEnter={preventBubble(onEnter)}
+			onDragLeave={preventBubble(onLeave)}
+			onDragOver={preventBubble(noop)}
+			onDrop={preventBubble(onDrop)}
 			role="application"
 		>
 			{children}

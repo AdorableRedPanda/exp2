@@ -1,14 +1,14 @@
-import { withPreventDefault } from '@/utils/withPreventDefault';
-
-import { withStopPropagation } from './withStopPropagation';
+import type { ActionHandler } from '@/types';
 
 interface Bubbling {
-	preventDefault: () => void;
-	stopPropagation: () => void;
+	preventDefault: ActionHandler;
+	stopPropagation: ActionHandler;
 }
 
-type EventHandler<TEvent extends Bubbling> = (e: TEvent) => void;
-
-export const preventBubble = <TEvent extends Bubbling>(
-	fn: EventHandler<TEvent>,
-): EventHandler<TEvent> => withPreventDefault(withStopPropagation(fn));
+export const preventBubble =
+	<TEvent extends Bubbling>(fn: ActionHandler<TEvent>) =>
+	(ev: Bubbling) => {
+		ev.preventDefault();
+		ev.stopPropagation();
+		fn(ev);
+	};
