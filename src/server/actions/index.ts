@@ -1,4 +1,4 @@
 export { deleteTransaction } from './deleteTransaction';
-export { handleInput } from './handleInput';
-export { handleUpload } from './handleUpload';
+export { parseInput } from './parseInput';
 export { updateTransaction } from './updateTransaction';
+export { uploadFiles } from './uploadFiles';

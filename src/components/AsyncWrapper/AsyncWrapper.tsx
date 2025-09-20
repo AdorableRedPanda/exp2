@@ -1,13 +1,12 @@
 import type React from 'react';
 
-import { useWrapperValue } from '@/components/AsyncWrapper/hooks';
-
-import { WrapperCtx } from './context';
+import { AsyncCtx } from './context';
+import { useAsyncWrapper } from './hooks';
 
 export const AsyncWrapper: React.FC<React.PropsWithChildren> = ({
 	children,
 }) => {
-	const value = useWrapperValue();
+	const value = useAsyncWrapper();
 
-	return <WrapperCtx value={value}>{children}</WrapperCtx>;
+	return <AsyncCtx value={value}>{children}</AsyncCtx>;
 };

@@ -1,2 +1,2 @@
 export { AsyncWrapper } from './AsyncWrapper';
-export { useAsyncWrapper } from './hooks';
+export { useActionLoaders, useAsyncActions } from './hooks';

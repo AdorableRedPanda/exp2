@@ -11,10 +11,7 @@ interface Props {
 }
 
 export const TxnUpdateModal: React.FC<Props> = ({ onClose, transaction }) => {
-	const { deleting, onDelete, onSubmit, updating } = useTxnUpdates(
-		transaction,
-		onClose,
-	);
+	const { onDelete, onSubmit } = useTxnUpdates(transaction, onClose);
 
 	if (!transaction) {
 		return null;
@@ -22,11 +19,7 @@ export const TxnUpdateModal: React.FC<Props> = ({ onClose, transaction }) => {
 
 	return (
 		<FormModal onClose={onClose} onSubmit={onSubmit} transaction={transaction}>
-			<FormButtons
-				deleting={deleting}
-				onDelete={onDelete}
-				updating={updating}
-			/>
+			<FormButtons onDelete={onDelete} />
 		</FormModal>
 	);
 };

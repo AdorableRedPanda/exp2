@@ -3,13 +3,13 @@
 import type React from 'react';
 import { useState } from 'react';
 
-import { Loader, SendHorizontal } from 'lucide-react';
+import { SendHorizontal } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import type { Transaction } from '@/types';
 
-import { handleInput, handleUpload } from '@/server/actions';
-import { Button } from '@/shadcn/components';
+import { LoadingButton } from '@/components/LoadingButton';
+import { parseInput, uploadFiles } from '@/server/actions';
 
 import { AsyncWrapper } from './AsyncWrapper';
 import { FilesDropzone } from './FilesDropzone';
@@ -25,7 +25,7 @@ export const useList = () => {
 
 	const parse = (input: string) => {
 		setLoading(true);
-		handleInput(input)
+		parseInput(input)
 			.then(() => {
 				router.refresh();
 			})
@@ -34,7 +34,7 @@ export const useList = () => {
 
 	const upload = (files: File[]) => {
 		setLoading(true);
-		handleUpload(files)
+		uploadFiles(files)
 			.then(() => {
 				router.refresh();
 			})
@@ -66,10 +66,9 @@ export const TransactionsList: React.FC<Props> = ({ transactions }) => {
 							))}
 						</ul>
 						<TextForm onSubmit={parse}>
-							<Button disabled={loading} type="submit">
-								{loading && <Loader className="animate-spin" />}
-								{!loading && <SendHorizontal />}
-							</Button>
+							<LoadingButton disabled={loading} loading={loading} type="submit">
+								<SendHorizontal />
+							</LoadingButton>
 						</TextForm>
 					</div>
 				</FilesDropzone>

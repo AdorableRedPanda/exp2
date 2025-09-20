@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-import type { WrapperContext } from './types';
+import type { AsyncContext } from './types';
 
-export const WrapperCtx = createContext<null | WrapperContext>(null);
+export const AsyncCtx = createContext<AsyncContext | null>(null);

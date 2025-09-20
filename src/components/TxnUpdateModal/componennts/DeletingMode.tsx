@@ -1,9 +1,10 @@
 import type React from 'react';
 
-import { AlertCircleIcon, Loader, Trash2, Undo2 } from 'lucide-react';
+import { AlertCircleIcon, Trash2, Undo2 } from 'lucide-react';
 
 import type { ActionHandler } from '@/types';
 
+import { LoadingButton } from '@/components/LoadingButton';
 import { Button } from '@/shadcn/components';
 
 interface Props {
@@ -26,14 +27,15 @@ export const DeletingMode: React.FC<Props> = ({
 			<AlertCircleIcon size={16} />
 			{DeleteMessage}
 		</div>
-		<Button
+		<LoadingButton
 			disabled={disabled}
+			loading={loading}
 			onClick={onDelete}
 			type="button"
 			variant="destructive"
 		>
-			{loading ? <Loader className="animate-spin" /> : <Trash2 />}
-		</Button>
+			<Trash2 />
+		</LoadingButton>
 		<Button onClick={onCancel} size="icon" type="button" variant="outline">
 			<Undo2 />
 		</Button>

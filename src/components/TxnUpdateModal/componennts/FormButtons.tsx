@@ -1,28 +1,25 @@
 import type React from 'react';
 import { useState } from 'react';
 
-import { Loader, Save, Trash2 } from 'lucide-react';
+import { Save, Trash2 } from 'lucide-react';
 
 import type { ActionHandler } from '@/types';
 
+import { useActionLoaders } from '@/components/AsyncWrapper';
+import { LoadingButton } from '@/components/LoadingButton';
 import { Button } from '@/shadcn/components';
 
 import { DeletingMode } from './DeletingMode';
 
 interface Props {
-	deleting: boolean;
 	onDelete: ActionHandler;
-	updating: boolean;
 }
 
-export const FormButtons: React.FC<Props> = ({
-	deleting,
-	onDelete,
-	updating,
-}) => {
+export const FormButtons: React.FC<Props> = ({ onDelete }) => {
 	const [deleteMode, setMode] = useState(false);
 	const toggleDelete = () => setMode((mode) => !mode);
 
+	const [deleting, updating] = useActionLoaders('deleting', 'updating');
 	const disabled = deleting || updating;
 
 	if (deleteMode) {
@@ -38,12 +35,12 @@ export const FormButtons: React.FC<Props> = ({
 
 	return (
 		<div className="w-full flex gap-2 justify-end">
-			<Button onClick={toggleDelete} variant="destructive">
+			<Button onClick={toggleDelete} size="sm" variant="destructive">
 				<Trash2 />
 			</Button>
-			<Button disabled={disabled} type="submit">
-				{updating ? <Loader className="animate-spin" /> : <Save />}
-			</Button>
+			<LoadingButton className="p-4" loading={updating} size="sm">
+				<Save />
+			</LoadingButton>
 		</div>
 	);
 };

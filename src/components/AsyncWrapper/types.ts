@@ -1,6 +1,3 @@
-import type { ActionHandler } from '@/types';
+import type { useAsyncWrapper } from './hooks';
 
-export interface WrapperContext {
-	onError: ActionHandler;
-	onSuccess: ActionHandler;
-}
+export type AsyncContext = ReturnType<typeof useAsyncWrapper>;
