@@ -5,7 +5,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 import { Nunito } from 'next/font/google';
-import NextTopLoader from 'nextjs-toploader';
 
 import { Toaster } from '@/shadcn/components';
 
@@ -39,7 +38,6 @@ export default function RootLayout({
 					position="top-center"
 					richColors
 				/>
-				<NextTopLoader color="white" showSpinner={false} />
 			</body>
 		</html>
 	);
