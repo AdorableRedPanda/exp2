@@ -10,17 +10,20 @@ import { TransactionEditProvider } from './TransactionEditProvider';
 import { TransactionsList } from './TransactionsList';
 import { TransactionsUpload } from './TransactionsUpload';
 
-interface Props {
+interface Props extends React.PropsWithChildren {
 	transactions: Transaction[];
 }
 
-export const Transactions: React.FC<Props> = ({ transactions }) => (
+export const Transactions: React.FC<Props> = ({ children, transactions }) => (
 	<AsyncWrapper>
 		<TransactionEditProvider>
 			<TransactionsUpload>
-				<div className="h-full w-full grid grid-rows-[1fr_auto]">
-					<TransactionsList transactions={transactions} />
-					<InputForm />
+				<div className="overflow-hidden h-full w-full grid grid-cols-[380px_1fr]">
+					<div className="bg-background overflow-hidden  grid grid-rows-[1fr_auto]">
+						<TransactionsList transactions={transactions} />
+						<InputForm />
+					</div>
+					{children}
 				</div>
 			</TransactionsUpload>
 		</TransactionEditProvider>

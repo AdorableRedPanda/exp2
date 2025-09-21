@@ -14,3 +14,21 @@ export {
 } from './dialog';
 export { Input } from './input';
 export { toast, Toaster } from './sonner';
+export {
+	Card,
+	CardHeader,
+	CardFooter,
+	CardTitle,
+	CardAction,
+	CardDescription,
+	CardContent,
+} from './card';
+export {
+	ChartContainer,
+	ChartTooltip,
+	ChartTooltipContent,
+	ChartLegend,
+	ChartLegendContent,
+	ChartStyle,
+	type ChartConfig,
+} from './chart';
