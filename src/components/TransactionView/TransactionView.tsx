@@ -3,11 +3,11 @@ import type React from 'react';
 import type { Transaction } from '@/types';
 
 import { useOpenEdit } from '@/components/TransactionEditProvider';
-import { getDateLabel } from '@/server/utils';
 import { Badge } from '@/shadcn/components';
 import { cn } from '@/shadcn/utils';
 
 import { TagsView } from './components';
+import { getDateLabel } from './utils';
 
 interface Props {
 	transaction: Transaction;
