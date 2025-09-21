@@ -1,14 +1,18 @@
 'use client';
 
+import type React from 'react';
+
 import {
 	Bar,
 	BarChart,
 	CartesianGrid,
+	ReferenceLine,
+	Tooltip,
 	XAxis,
 	YAxis,
-	Tooltip,
-	ReferenceLine,
 } from 'recharts';
+
+import type { MonthlySummary } from '@/server/get/getAggregated';
 
 import {
 	Card,
@@ -20,24 +24,22 @@ import {
 	ChartContainer,
 	ChartTooltipContent,
 } from '@/shadcn/components';
-import type { MonthlySummary } from '@/server/get/getAggregated';
-import type React from 'react';
 
 interface Props {
-	summaries: MonthlySummary[];
 	average: number;
+	summaries: MonthlySummary[];
 }
 
 const chartConfig = {
 	savingPercent: {
-		label: 'Saving rate',
 		color: 'var(--chart-3)',
+		label: 'Saving rate',
 	},
 } satisfies ChartConfig;
 
 export const SavingsPercentChart: React.FC<Props> = ({
-	summaries,
 	average,
+	summaries,
 }) => (
 	<Card className="mx-auto min-w-3xl h-fit">
 		<CardHeader>
@@ -49,14 +51,14 @@ export const SavingsPercentChart: React.FC<Props> = ({
 		</CardHeader>
 		<CardContent>
 			<ChartContainer config={chartConfig}>
-				<BarChart width={800} height={400} data={summaries}>
+				<BarChart data={summaries} height={400} width={800}>
 					<CartesianGrid strokeDasharray="3 3" vertical={false} />
-					<XAxis dataKey="label" tickMargin={10} axisLine={false} />
+					<XAxis axisLine={false} dataKey="label" tickMargin={10} />
 					<YAxis
-						tickMargin={10}
 						axisLine={false}
-						tickFormatter={(value) => `${value.toFixed(0)}%`}
 						domain={[0, 100]} // от 0 до 100%
+						tickFormatter={(value) => `${value.toFixed(0)}%`}
+						tickMargin={10}
 					/>
 					<Tooltip content={<ChartTooltipContent indicator="line" />} />
 					<Bar
@@ -65,9 +67,9 @@ export const SavingsPercentChart: React.FC<Props> = ({
 						radius={[4, 4, 0, 0]}
 					/>
 					<ReferenceLine
-						y={average}
 						stroke="var(--chart-reference-line)"
 						strokeDasharray="3 3"
+						y={average}
 					/>
 				</BarChart>
 			</ChartContainer>

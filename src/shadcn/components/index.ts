@@ -1,6 +1,24 @@
 export { Badge } from './badge';
 export { Button } from './button';
 export {
+	Card,
+	CardAction,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from './card';
+export {
+	type ChartConfig,
+	ChartContainer,
+	ChartLegend,
+	ChartLegendContent,
+	ChartStyle,
+	ChartTooltip,
+	ChartTooltipContent,
+} from './chart';
+export {
 	Dialog,
 	DialogClose,
 	DialogContent,
@@ -14,21 +32,3 @@ export {
 } from './dialog';
 export { Input } from './input';
 export { toast, Toaster } from './sonner';
-export {
-	Card,
-	CardHeader,
-	CardFooter,
-	CardTitle,
-	CardAction,
-	CardDescription,
-	CardContent,
-} from './card';
-export {
-	ChartContainer,
-	ChartTooltip,
-	ChartTooltipContent,
-	ChartLegend,
-	ChartLegendContent,
-	ChartStyle,
-	type ChartConfig,
-} from './chart';

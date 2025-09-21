@@ -1,8 +1,8 @@
 import { AppHeader, Transactions } from '@/components';
-import { getAggregated, getTransactions } from '@/server/get';
-import { SummaryCharts } from '@/components/SummaryCharts';
 import { SavingsChart } from '@/components/SavingChart';
 import { SavingsPercentChart } from '@/components/SavingsPercentChart';
+import { SummaryCharts } from '@/components/SummaryCharts';
+import { getAggregated, getTransactions } from '@/server/get';
 
 export const dynamic = 'force-dynamic';
 

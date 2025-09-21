@@ -87,4 +87,5 @@ export default [
 			],
 		},
 	},
+	{ ignores: ['src/shadcn/**'] },
 ];

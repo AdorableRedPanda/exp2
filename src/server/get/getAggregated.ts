@@ -5,9 +5,9 @@ export interface MonthlySummary {
 	balance: number;
 	expense: number;
 	income: number;
-	savingPercent: number;
 	label: string;
 	month: string;
+	savingPercent: number;
 }
 
 export const getAggregated = async () => {

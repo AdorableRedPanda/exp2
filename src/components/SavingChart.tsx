@@ -1,6 +1,10 @@
 'use client';
 
+import type React from 'react';
+
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+
+import type { MonthlySummary } from '@/server/get/getAggregated';
 
 import {
 	Card,
@@ -13,13 +17,11 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from '@/shadcn/components';
-import type { MonthlySummary } from '@/server/get/getAggregated';
-import type React from 'react';
 
 const chartConfig = {
 	balance: {
-		label: 'Balance',
 		color: 'var(--chart-3)',
+		label: 'Balance',
 	},
 } satisfies ChartConfig;
 
@@ -38,14 +40,14 @@ export const SavingsChart: React.FC<Props> = ({ summaries }) => (
 				<BarChart accessibilityLayer data={summaries}>
 					<CartesianGrid vertical={false} />
 					<YAxis
-						tickMargin={10}
 						axisLine={false}
 						tickFormatter={(value) => value.toLocaleString()}
+						tickMargin={10}
 					/>
-					<XAxis dataKey="label" tickMargin={10} axisLine={false} />
+					<XAxis axisLine={false} dataKey="label" tickMargin={10} />
 					<ChartTooltip
-						cursor={false}
 						content={<ChartTooltipContent indicator="dashed" />}
+						cursor={false}
 					/>
 					<Bar dataKey="balance" fill="var(--chart-3)" radius={4} />
 				</BarChart>
