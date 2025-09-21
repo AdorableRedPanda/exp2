@@ -10,11 +10,9 @@ export const parseInput = async (input: string): Promise<Transaction[]> => {
 	const parsed = await llm.parseTransaction(input);
 
 	const data = txnFromAny(parsed as {});
-	// todo: use special type of support iso on frontend
-	const date = new Date();
 
 	const created = await prisma.transaction.create({
-		data: { ...data, date },
+		data: { ...data },
 	});
 
 	return [{ ...data, id: created.id }];

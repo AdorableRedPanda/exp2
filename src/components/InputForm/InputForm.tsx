@@ -14,7 +14,7 @@ export const InputForm: React.FC = () => {
 			<Input
 				className="border p-2 rounded"
 				name="user_input"
-				placeholder="Enter text"
+				placeholder="Enter transaction details"
 			/>
 			<LoadingButton disabled={loading} loading={loading} type="submit">
 				<SendHorizontal />

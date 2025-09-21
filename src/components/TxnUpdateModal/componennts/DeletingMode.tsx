@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import { AlertCircleIcon, Trash2, Undo2 } from 'lucide-react';
+import { AlertCircleIcon, Check, Undo2 } from 'lucide-react';
 
 import type { ActionHandler } from '@/types';
 
@@ -34,7 +34,7 @@ export const DeletingMode: React.FC<Props> = ({
 			type="button"
 			variant="destructive"
 		>
-			<Trash2 />
+			<Check />
 		</LoadingButton>
 		<Button onClick={onCancel} type="button" variant="secondary">
 			<Undo2 />

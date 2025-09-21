@@ -32,8 +32,8 @@ interface Props {
 export const SavingsChart: React.FC<Props> = ({ summaries }) => (
 	<Card className="mx-auto min-w-3xl h-fit">
 		<CardHeader>
-			<CardTitle>Доходы и расходы</CardTitle>
-			<CardDescription>Агрегация по месяцам</CardDescription>
+			<CardTitle>Balance by Month</CardTitle>
+			<CardDescription>Monthly Aggregation</CardDescription>
 		</CardHeader>
 		<CardContent>
 			<ChartContainer config={chartConfig}>

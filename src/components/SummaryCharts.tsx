@@ -36,8 +36,8 @@ interface Props {
 export const SummaryCharts: React.FC<Props> = ({ summaries }) => (
 	<Card className="mx-auto min-w-3xl h-fit">
 		<CardHeader>
-			<CardTitle>Доходы и расходы</CardTitle>
-			<CardDescription>Агрегация по месяцам</CardDescription>
+			<CardTitle> Income and Expenses</CardTitle>
+			<CardDescription>Monthly aggregation</CardDescription>
 		</CardHeader>
 		<CardContent>
 			<ChartContainer config={chartConfig}>
