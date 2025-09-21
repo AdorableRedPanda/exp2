@@ -7,7 +7,7 @@ CREATE TABLE "public"."Transaction" (
     "amount" DOUBLE PRECISION NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
     "tags" TEXT[],
-    "type" "public"."TransactionType" NOT NULL,
+    "type" "public"."TransactionType" NOT NULL, 
 
     CONSTRAINT "Transaction_pkey" PRIMARY KEY ("id")
 );
