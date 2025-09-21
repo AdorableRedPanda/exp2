@@ -13,6 +13,7 @@ model Transaction {
   date   DateTime
   tags   String[]
   type   TransactionType
+  month  DateTime?       @default(dbgenerated("(date_trunc('month'::text, date))::date")) @db.Date
 }
 
 enum TransactionType {
