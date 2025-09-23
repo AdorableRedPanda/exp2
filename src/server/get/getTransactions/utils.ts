@@ -2,8 +2,12 @@ import type { Transaction } from '@/types';
 
 import type { GroupSummary, TransactionsGroup } from './types';
 
-export const getMonthKey = (t: Transaction) =>
-	t.date.toLocaleDateString('en-US', { month: 'numeric', year: 'numeric' });
+export const getMonthKey = (t: Transaction) => {
+	const year = t.date.getFullYear();
+	const month = t.date.getMonth().toString(10).padStart(2, '0');
+
+	return `${year}_${month}`;
+};
 
 export const getMonthLabel = (transactions: Transaction[]) => {
 	const transaction = transactions[0];
@@ -38,6 +42,8 @@ export const buildGroups = (
 ): TransactionsGroup[] => {
 	const groups = Object.groupBy(transactions, getMonthKey);
 	const keys = Object.keys(groups).sort((a, b) => (a < b ? 1 : -1));
+
+	console.log(keys);
 
 	return keys.map((key) => {
 		const items = groups[key] || [];
