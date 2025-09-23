@@ -43,8 +43,6 @@ export const buildGroups = (
 	const groups = Object.groupBy(transactions, getMonthKey);
 	const keys = Object.keys(groups).sort((a, b) => (a < b ? 1 : -1));
 
-	console.log(keys);
-
 	return keys.map((key) => {
 		const items = groups[key] || [];
 
