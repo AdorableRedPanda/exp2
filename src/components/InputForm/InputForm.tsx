@@ -10,7 +10,10 @@ export const InputForm: React.FC = () => {
 	const { loading, onSubmit } = useInputForm();
 
 	return (
-		<form className="grid grid-cols-[1fr_auto] gap-2 p-2" onSubmit={onSubmit}>
+		<form
+			className="bg-background grid grid-cols-[1fr_auto] gap-2 p-2"
+			onSubmit={onSubmit}
+		>
 			<Input
 				className="border p-2 rounded"
 				name="user_input"

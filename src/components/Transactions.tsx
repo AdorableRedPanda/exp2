@@ -2,7 +2,7 @@
 
 import type React from 'react';
 
-import type { Transaction } from '@/types';
+import type { TransactionsGroup } from '@/server/get';
 
 import { AsyncWrapper } from './AsyncWrapper';
 import { InputForm } from './InputForm';
@@ -11,7 +11,7 @@ import { TransactionsList } from './TransactionsList';
 import { TransactionsUpload } from './TransactionsUpload';
 
 interface Props extends React.PropsWithChildren {
-	transactions: Transaction[];
+	transactions: TransactionsGroup[];
 }
 
 export const Transactions: React.FC<Props> = ({ children, transactions }) => (

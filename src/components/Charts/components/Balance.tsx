@@ -4,40 +4,30 @@ import type React from 'react';
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
-import type { MonthlySummary } from '@/server/get/getAggregated';
-
 import {
-	Card,
 	CardContent,
 	CardDescription,
 	CardHeader,
 	CardTitle,
-	type ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from '@/shadcn/components';
 
-const chartConfig = {
-	balance: {
-		color: 'var(--chart-3)',
-		label: 'Balance',
-	},
-} satisfies ChartConfig;
+import type { ChartProps } from '../types';
 
-interface Props {
-	summaries: MonthlySummary[];
-}
+import { BalanceConfig } from '../constants';
+import { ChartCard } from './ChartCard';
 
-export const SavingsChart: React.FC<Props> = ({ summaries }) => (
-	<Card className="mx-auto min-w-3xl h-fit">
+export const Balance: React.FC<ChartProps> = ({ data }) => (
+	<ChartCard>
 		<CardHeader>
 			<CardTitle>Balance by Month</CardTitle>
 			<CardDescription>Monthly Aggregation</CardDescription>
 		</CardHeader>
 		<CardContent>
-			<ChartContainer config={chartConfig}>
-				<BarChart accessibilityLayer data={summaries}>
+			<ChartContainer config={BalanceConfig}>
+				<BarChart accessibilityLayer data={data}>
 					<CartesianGrid vertical={false} />
 					<YAxis
 						axisLine={false}
@@ -46,12 +36,12 @@ export const SavingsChart: React.FC<Props> = ({ summaries }) => (
 					/>
 					<XAxis axisLine={false} dataKey="label" tickMargin={10} />
 					<ChartTooltip
-						content={<ChartTooltipContent indicator="dashed" />}
+						content={<ChartTooltipContent indicator="line" />}
 						cursor={false}
 					/>
-					<Bar dataKey="balance" fill="var(--chart-3)" radius={4} />
+					<Bar dataKey="summary.balance" fill="var(--chart-3)" radius={4} />
 				</BarChart>
 			</ChartContainer>
 		</CardContent>
-	</Card>
+	</ChartCard>
 );

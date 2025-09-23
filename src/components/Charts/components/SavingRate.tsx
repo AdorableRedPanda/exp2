@@ -12,45 +12,34 @@ import {
 	YAxis,
 } from 'recharts';
 
-import type { MonthlySummary } from '@/server/get/getAggregated';
-
+import { getAverage } from '@/components/Charts/utils';
 import {
-	Card,
 	CardContent,
 	CardDescription,
 	CardHeader,
 	CardTitle,
-	type ChartConfig,
 	ChartContainer,
 	ChartTooltipContent,
 } from '@/shadcn/components';
 
-interface Props {
-	average: number;
-	summaries: MonthlySummary[];
-}
+import type { ChartProps } from '../types';
 
-const chartConfig = {
-	savingPercent: {
-		color: 'var(--chart-3)',
-		label: 'Saving rate',
-	},
-} satisfies ChartConfig;
+import { SavingRateConfig } from '../constants';
+import { ChartCard } from './ChartCard';
 
-export const SavingsPercentChart: React.FC<Props> = ({
-	average,
-	summaries,
-}) => {
-	const description = `Balance as % of income by month , average - ${Math.round(average)}%`;
+export const SavingRate: React.FC<ChartProps> = ({ data }) => {
+	const average = getAverage(data.map((t) => t.summary.savingRate));
+	const description = `Balance as % of income by month, average - ${Math.round(average)}%`;
+
 	return (
-		<Card className="mx-auto min-w-3xl h-fit">
+		<ChartCard>
 			<CardHeader>
-				<CardTitle>Savings Rate</CardTitle>
+				<CardTitle>Saving Rate</CardTitle>
 				<CardDescription>{description}</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<ChartContainer config={chartConfig}>
-					<BarChart data={summaries} height={400} width={800}>
+				<ChartContainer config={SavingRateConfig}>
+					<BarChart data={data} height={400} width={800}>
 						<CartesianGrid strokeDasharray="3 3" vertical={false} />
 						<XAxis axisLine={false} dataKey="label" tickMargin={10} />
 						<YAxis
@@ -58,9 +47,13 @@ export const SavingsPercentChart: React.FC<Props> = ({
 							tickFormatter={(value) => value.toLocaleString()}
 							tickMargin={10}
 						/>
-						<Tooltip content={<ChartTooltipContent indicator="line" />} />
+						<Tooltip
+							content={<ChartTooltipContent indicator="line" />}
+							cursor={false}
+							label="savingRate"
+						/>
 						<Bar
-							dataKey="savingPercent"
+							dataKey="summary.savingRate"
 							fill="var(--chart-3)"
 							radius={[4, 4, 0, 0]}
 						/>
@@ -72,6 +65,6 @@ export const SavingsPercentChart: React.FC<Props> = ({
 					</BarChart>
 				</ChartContainer>
 			</CardContent>
-		</Card>
+		</ChartCard>
 	);
 };

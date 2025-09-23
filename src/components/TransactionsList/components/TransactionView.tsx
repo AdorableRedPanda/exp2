@@ -1,17 +1,22 @@
 import type React from 'react';
 
-import type { Transaction } from '@/types';
+import type { Transaction, TransactionType } from '@/types';
 
 import { useOpenEdit } from '@/components/TransactionEditProvider';
 import { Badge } from '@/shadcn/components';
 import { cn } from '@/shadcn/utils';
 
-import { TagsView } from './components';
-import { getDateLabel } from './utils';
+import { getDateLabel } from '../utils';
+import { TagsView } from './TagsView';
 
 interface Props {
 	transaction: Transaction;
 }
+
+const TextColor: Record<TransactionType, string> = {
+	expense: 'text-red-800',
+	income: 'text-green-700',
+};
 
 export const TransactionView: React.FC<Props> = ({ transaction }) => {
 	const { amount, date, tags, type } = transaction;
@@ -31,13 +36,7 @@ export const TransactionView: React.FC<Props> = ({ transaction }) => {
 				<TagsView tags={tags} />
 			</div>
 
-			<div
-				className={cn(
-					'text-sm font-semibold px-2',
-					type === 'income' && 'text-green-700',
-					type === 'expense' && 'text-red-800',
-				)}
-			>
+			<div className={cn('text-sm font-semibold px-2', TextColor[type])}>
 				{amount}
 			</div>
 		</button>

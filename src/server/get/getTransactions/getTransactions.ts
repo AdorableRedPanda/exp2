@@ -2,7 +2,9 @@
 
 import type { Transaction } from '@/types';
 
-import { prisma } from '../prisma';
+import { buildGroups } from '@/server/get/getTransactions/utils';
+
+import { prisma } from '../../prisma';
 
 export const getTransactions = async () => {
 	const data = await prisma.transaction.findMany({
@@ -11,7 +13,7 @@ export const getTransactions = async () => {
 		},
 	});
 
-	return data.map(
+	const list = data.map(
 		(t): Transaction => ({
 			amount: t.amount,
 			date: t.date,
@@ -20,4 +22,6 @@ export const getTransactions = async () => {
 			type: t.type,
 		}),
 	);
+
+	return buildGroups(list);
 };

@@ -4,44 +4,34 @@ import type React from 'react';
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
-import type { MonthlySummary } from '@/server/get/getAggregated';
+import type { TransactionsGroup } from '@/server/get';
 
 import {
-	Card,
 	CardContent,
 	CardDescription,
 	CardHeader,
 	CardTitle,
-	type ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from '@/shadcn/components';
 
-const chartConfig = {
-	expense: {
-		color: 'var(--chart-2)',
-		label: 'Expense',
-	},
-	income: {
-		color: 'var(--chart-1)',
-		label: 'Income',
-	},
-} satisfies ChartConfig;
+import { SummaryConfig } from '../constants';
+import { ChartCard } from './ChartCard';
 
 interface Props {
-	summaries: MonthlySummary[];
+	data: TransactionsGroup[];
 }
 
-export const SummaryCharts: React.FC<Props> = ({ summaries }) => (
-	<Card className="mx-auto min-w-3xl h-fit">
+export const Summary: React.FC<Props> = ({ data }) => (
+	<ChartCard>
 		<CardHeader>
 			<CardTitle> Income and Expenses</CardTitle>
 			<CardDescription>Monthly aggregation</CardDescription>
 		</CardHeader>
 		<CardContent>
-			<ChartContainer config={chartConfig}>
-				<BarChart accessibilityLayer data={summaries}>
+			<ChartContainer config={SummaryConfig}>
+				<BarChart accessibilityLayer data={data}>
 					<CartesianGrid vertical={false} />
 					<YAxis
 						axisLine={false}
@@ -53,10 +43,14 @@ export const SummaryCharts: React.FC<Props> = ({ summaries }) => (
 						content={<ChartTooltipContent indicator="dashed" />}
 						cursor={false}
 					/>
-					<Bar dataKey="income" fill="var(--color-income)" radius={4} />
-					<Bar dataKey="expense" fill="var(--color-expense)" radius={4} />
+					<Bar dataKey="summary.income" fill="var(--color-income)" radius={4} />
+					<Bar
+						dataKey="summary.expense"
+						fill="var(--color-expense)"
+						radius={4}
+					/>
 				</BarChart>
 			</ChartContainer>
 		</CardContent>
-	</Card>
+	</ChartCard>
 );
