@@ -7,12 +7,10 @@ import type { LoginData } from '@/types';
 import { prisma } from '@/server/prisma';
 import { buildToken } from '@/server/utils';
 
-const PASSWORD_KEY = process.env.PASSWORD_KEY as string;
 const hashOf = (password: string) =>
 	argon2.hash(password, {
 		hashLength: 12,
 		parallelism: 1,
-		secret: Buffer.from(PASSWORD_KEY),
 		type: argon2.argon2id,
 	});
 
