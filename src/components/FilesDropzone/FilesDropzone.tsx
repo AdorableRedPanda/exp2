@@ -42,7 +42,7 @@ export const FilesDropzone: React.FC<Props> = ({
 	return (
 		<div
 			aria-label="File drop zone"
-			className="relative w-full h-full"
+			className="relative w-full h-full contents"
 			onDragEnter={preventBubble(onEnter)}
 			onDragLeave={preventBubble(onLeave)}
 			onDragOver={preventBubble(noop)}
