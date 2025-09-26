@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 
 import { prisma } from '@/server/prisma';
 
-export const getUser = async () => {
+export const getAuth = async () => {
 	const store = await cookies();
 	const token = store.get('token')?.value || '';
 
