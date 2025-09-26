@@ -1,6 +1,7 @@
 'use server';
-import { withAuth } from '@/server/actions/withAuth';
+
 import { prisma } from '@/server/prisma';
+import { withAuth } from '@/server/withAuth';
 
 const _deleteTransaction = async (id: string) => {
 	await prisma.transaction.delete({ where: { id } });

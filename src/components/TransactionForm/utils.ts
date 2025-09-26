@@ -1,4 +1,4 @@
-import { parseAny } from '@/server/utils';
+import { parseTxnData } from '@/utils';
 
 export const parseFormData = (data: FormData) => {
 	const tags = data.get('tags');
@@ -6,7 +6,7 @@ export const parseFormData = (data: FormData) => {
 	const type = data.get('type');
 	const date = data.get('date');
 
-	return parseAny({ amount, date, tags, type });
+	return parseTxnData({ amount, date, tags, type });
 };
 
 export const stringifyDate = (d: Date) => {

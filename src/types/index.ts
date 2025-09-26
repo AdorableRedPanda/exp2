@@ -4,4 +4,5 @@ export type {
 	TransactionData,
 	TransactionType,
 } from './transactions';
-export type { ActionHandler, AsyncHandler, ID, Option, WithId } from './utils';
+export type { SettingsDto } from './user';
+export type { ActionHandler, ID, Option, WithId } from './utils';

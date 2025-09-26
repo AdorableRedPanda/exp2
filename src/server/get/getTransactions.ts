@@ -4,11 +4,11 @@ import type { Transaction } from '@/types';
 
 import { prisma } from '@/server/prisma';
 
-import { getUser } from '../actions/getUser';
-import { withAuth } from '../actions/withAuth';
+import { getAuth } from '../getAuth';
+import { withAuth } from '../withAuth';
 
 const _getTransactions = async (): Promise<Transaction[]> => {
-	const user = await getUser();
+	const user = await getAuth();
 	const data = await prisma.transaction.findMany({
 		orderBy: {
 			date: 'desc',
