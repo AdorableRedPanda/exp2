@@ -17,19 +17,20 @@ const schema = {
 	type: 'object',
 };
 
-const instructions = (d: Date) =>
+const instructions = (d: Date, tags: string[]) =>
 	[
-		'Extract data from the user input into exact JSON format.	',
+		'Extract data from the user input into exact JSON format.',
 		`Define date closest to ${d.toString()} - use same time, day, month, year if not specified in input.`,
+		`If it can be matched use these tags: ${tags.join(',')}`,
 	].join('');
 
 const model = 'openai/gpt-oss-20b';
 
-export const parseTransaction = async (input: string) => {
+export const parseTransaction = async (input: string, tags: string[]) => {
 	const now = new Date();
 	const response = await openAi.responses.create({
 		input,
-		instructions: instructions(now),
+		instructions: instructions(now, tags),
 		model,
 		stream: false,
 		text: {

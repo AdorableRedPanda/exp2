@@ -41,7 +41,7 @@ export const parseTags = (t: unknown): string[] => {
 	return [];
 };
 type ParseArg = Record<string, unknown>;
-export const txnFromAny = (t: Record<string, unknown>): TransactionData => {
+export const txnFromAny = (t: unknown): TransactionData => {
 	if (!isObject(t)) {
 		throw new Error('Invalid transaction format');
 	}
