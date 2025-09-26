@@ -25,11 +25,11 @@ export const Transactions: React.FC<Props> = ({
 	transactions,
 }) => (
 	<main className="m-auto h-full w-full grid grid-rows-[auto_1fr] bg-muted overflow-hidden">
-		<AppHeader />
 		<AsyncWrapper>
 			<SettingsProvider settings={settings}>
 				<TransactionEditProvider>
 					<TransactionsUpload>
+						<AppHeader />
 						<div className="overflow-hidden h-full w-full grid grid-cols-[380px_1fr]">
 							<div className="bg-background overflow-hidden  grid grid-rows-[1fr_auto]">
 								<TransactionsList transactions={transactions} />
