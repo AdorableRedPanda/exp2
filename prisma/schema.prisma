@@ -13,6 +13,24 @@ model Transaction {
   date   DateTime
   tags   String[]
   type   TransactionType
+  userId String
+  user   User            @relation(fields: [userId], references: [id])
+}
+
+model Settings {
+  id     String   @id @unique @default(cuid())
+  tags   String[]
+  userId String   @unique
+  User   User     @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id           String        @id @unique @default(cuid())
+  email        String        @unique
+  passwordHash String
+  token        String        @unique
+  settings     Settings?
+  transactions Transaction[]
 }
 
 enum TransactionType {

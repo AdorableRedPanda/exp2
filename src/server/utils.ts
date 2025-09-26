@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 import type { TransactionData } from '@/types';
 
 export const parseAmount = (amount: unknown): number => {
@@ -86,3 +88,5 @@ export const parseFiles = async (files: File[]): Promise<TransactionData[]> => {
 };
 
 export const parseAny = (arg: ParseArg) => txnFromAny(arg);
+
+export const buildToken = () => nanoid();

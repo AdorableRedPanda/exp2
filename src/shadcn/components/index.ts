@@ -31,4 +31,5 @@ export {
 	DialogTrigger,
 } from './dialog';
 export { Input } from './input';
+export { Label } from './label';
 export { toast, Toaster } from './sonner';
