@@ -1,5 +1,7 @@
 import type React from 'react';
 
+import { Edit, } from 'lucide-react';
+
 import type { Transaction, TransactionType } from '@/types';
 
 import { useOpenEdit } from '@/components/TransactionEditProvider';
@@ -24,21 +26,25 @@ export const TransactionView: React.FC<Props> = ({ transaction }) => {
 	const { openEdit } = useOpenEdit(transaction);
 
 	return (
-		<button
-			className="cursor-pointer bg-background w-full gap-3 items-start flex justify-between min-h-14 p-2 border-b transition"
-			onClick={openEdit}
-			type="button"
-		>
-			<div className="w-full flex flex-col gap-2">
+		<div className="group bg-background w-full gap-3 items-start flex justify-between min-h-14 p-2 border-b">
+			<div className="w-full h-full flex flex-col gap-2">
 				<Badge className="font-semibold" variant="outline">
 					{getDateLabel(date)}
 				</Badge>
 				<TagsView tags={tags} />
 			</div>
-
-			<div className={cn('text-sm font-semibold px-2', TextColor[type])}>
-				{amount}
+			<div className="flex-0 flex flex-col items-end justify-between gap-2">
+				<div className={cn('text-sm font-semibold px-2', TextColor[type])}>
+					{amount}
+				</div>
+				<button
+					className="group-hover:opacity-100 opacity-0 duration-400 transition cursor-pointer p-1"
+					onClick={openEdit}
+					type="button"
+				>
+					<Edit className="size-4" />
+				</button>
 			</div>
-		</button>
+		</div>
 	);
 };

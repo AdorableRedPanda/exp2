@@ -1,9 +1,9 @@
 import type React from 'react';
 import { useRef, useState } from 'react';
 
-import type { DropState } from './types';
-
 import { isFilesDragged, isValidFiles } from './utils';
+
+export type DropState = 'default' | 'dragging' | 'error';
 
 export const useFilesDnD = (
 	onFilesDropped: (files: File[]) => void,

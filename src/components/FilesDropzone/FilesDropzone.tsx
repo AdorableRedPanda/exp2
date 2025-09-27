@@ -2,21 +2,14 @@
 
 import type React from 'react';
 
-import { Ban, UploadCloud } from 'lucide-react';
-
-import { cn } from '@/shadcn/utils';
-import { noop, preventBubble } from '@/utils';
-
+import { ErrorMsg, ProcessMsg } from './components';
 import { useFilesDnD } from './hooks';
+import { noop, withBubblingPrevent } from './utils';
 
 interface Props extends React.PropsWithChildren {
 	extensions: string[];
 	onDrop: (files: File[]) => void;
 }
-
-const overlayCls = 'fixed inset-0 flex items-center justify-center z-50';
-const messageCls =
-	'text-2xl font-bold p-6 flex flex-col items-center justify-center gap-6 text-white';
 
 export const FilesDropzone: React.FC<Props> = ({
 	children,
@@ -28,43 +21,20 @@ export const FilesDropzone: React.FC<Props> = ({
 		extensions,
 	);
 
-	const draggingCls = cn(
-		overlayCls,
-		state !== 'dragging' && 'hidden',
-		'bg-slate-600/70 animate-in fade-in',
-	);
-	const errorCls = cn(
-		overlayCls,
-		state !== 'error' && 'hidden',
-		'bg-red-900/60 animate-in fade-in',
-	);
-
 	return (
 		<div
 			aria-label="File drop zone"
 			className="relative w-full h-full contents"
-			onDragEnter={preventBubble(onEnter)}
-			onDragLeave={preventBubble(onLeave)}
-			onDragOver={preventBubble(noop)}
-			onDrop={preventBubble(onDrop)}
+			onDragEnter={withBubblingPrevent(onEnter)}
+			onDragLeave={withBubblingPrevent(onLeave)}
+			onDragOver={withBubblingPrevent(noop)}
+			onDrop={withBubblingPrevent(onDrop)}
 			role="application"
 		>
 			{children}
 
-			<div className={draggingCls}>
-				<div className={messageCls}>
-					<UploadCloud className="h-20 w-20" />
-					Drop your file here
-				</div>
-			</div>
-
-			<div className={errorCls}>
-				<div className={messageCls}>
-					<Ban className="h-20 w-20" />
-					Invalid file type. <br />
-					Supported: {extensions.join(', ')}
-				</div>
-			</div>
+			<ProcessMsg show={state === 'dragging'} />
+			<ErrorMsg extensions={extensions} show={state === 'error'} />
 		</div>
 	);
 };

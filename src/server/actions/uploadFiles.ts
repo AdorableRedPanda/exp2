@@ -1,9 +1,9 @@
 'use server';
 
 import { prisma } from '@/server/prisma';
+import { parseFiles } from '@/utils';
 
 import { getAuth } from '../getAuth';
-import { parseFiles } from '../utils';
 
 export const uploadFiles = async (files: File[]) => {
 	const user = await getAuth();

@@ -5,7 +5,7 @@ import argon2 from 'argon2';
 import type { LoginData } from '@/types';
 
 import { prisma } from '@/server/prisma';
-import { buildToken } from '@/server/utils';
+import { buildToken } from '@/utils';
 
 const hashOf = (password: string) =>
 	argon2.hash(password, {
