@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import { Edit, } from 'lucide-react';
+import { Edit } from 'lucide-react';
 
 import type { Transaction, TransactionType } from '@/types';
 
