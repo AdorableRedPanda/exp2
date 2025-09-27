@@ -38,7 +38,7 @@ export const TransactionView: React.FC<Props> = ({ transaction }) => {
 					{amount}
 				</div>
 				<button
-					className="group-hover:opacity-100 opacity-0 duration-400 transition cursor-pointer p-1"
+					className="group-hover:opacity-100 sm:opacity-0 duration-400 transition cursor-pointer p-1"
 					onClick={openEdit}
 					type="button"
 				>
