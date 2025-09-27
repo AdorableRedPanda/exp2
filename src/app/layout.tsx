@@ -32,7 +32,7 @@ export default function RootLayout({
 			<body
 				className={`${nunito.className} h-full w-full overflow-hidden antialiased bg-muted`}
 			>
-				{children}]
+				{children}
 				<Toaster
 					className="toaster group absolute"
 					position="top-center"

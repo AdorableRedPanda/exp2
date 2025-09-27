@@ -37,7 +37,11 @@ export const SettingsForm: React.FC<Props> = ({ settings }) => {
 					value={settings.email}
 				/>
 			</div>
-			<TagsInput value={settings.tags} />
+			<div className="flex flex-col gap-2">
+				<Label htmlFor="tags">Preferred tags</Label>
+				<TagsInput value={settings.tags} />
+			</div>
+
 			<div className="w-full flex justify-end">
 				<LoadingButton loading={loading} type="submit">
 					Save
