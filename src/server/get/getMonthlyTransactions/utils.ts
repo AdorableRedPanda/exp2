@@ -23,7 +23,10 @@ export const getMonthLabel = (transactions: Transaction[]) => {
 const takeIncome = (t: Transaction) => (t.type === 'income' ? t.amount : 0);
 const takeExpense = (t: Transaction) => (t.type === 'expense' ? t.amount : 0);
 
-export const buildSummary = (transactions: Transaction[]): GroupSummary => {
+export const buildSummary = (
+	transactions: Transaction[],
+	label: string,
+): GroupSummary => {
 	const income = transactions.reduce((acc, t) => acc + takeIncome(t), 0);
 	const expense = transactions.reduce((acc, t) => acc + takeExpense(t), 0);
 	const balance = income - expense;
@@ -33,6 +36,7 @@ export const buildSummary = (transactions: Transaction[]): GroupSummary => {
 		balance,
 		expense,
 		income,
+		label,
 		savingRate,
 	};
 };
@@ -45,12 +49,12 @@ export const buildGroups = (
 
 	return keys.map((key) => {
 		const items = groups[key] || [];
+		const label = getMonthLabel(items);
 
 		return {
 			items,
 			key,
-			label: getMonthLabel(items),
-			summary: buildSummary(items),
+			summary: buildSummary(items, label),
 		};
 	});
 };

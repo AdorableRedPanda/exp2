@@ -21,11 +21,13 @@ export const AppHeader: React.FC = () => {
 				<Button className="text-background" onClick={onClick} variant="link">
 					<Settings className="size-5" />
 				</Button>
-				<Link className="hover:underline" download href="/api/download/">
-					<Button className="text-background" variant="link">
-						<Download className="size-5" />
-						Download
-					</Button>
+				<Link
+					className="hover:underline hidden sm:flex gap-1 items-center"
+					download
+					href="/api/download/"
+				>
+					<Download className="size-5" />
+					Download
 				</Link>
 			</div>
 

@@ -16,10 +16,7 @@ export const useAsyncWrapper = () => {
 			return;
 		}
 
-		const errorInstance = error instanceof Error;
-
-		const message = errorInstance ? error.message : 'Something went wrong...';
-		toast.error(message);
+		toast.error('Something went wrong...');
 	};
 
 	const onSuccess = () => {
