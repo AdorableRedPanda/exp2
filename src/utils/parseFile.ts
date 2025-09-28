@@ -7,7 +7,7 @@ export const parseFile = async (file: File): Promise<TransactionData[]> => {
 	const json = JSON.parse(text);
 
 	if (!Array.isArray(json)) {
-		throw 'Invalid file format: expected an array of transactions';
+		throw new Error('Invalid file format: expected an array of transactions');
 	}
 
 	return json.map(parseTxnData);

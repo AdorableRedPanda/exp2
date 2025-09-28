@@ -16,10 +16,6 @@ export const useAsyncWrapper = () => {
 			return;
 		}
 
-		if (typeof error === 'string') {
-			return toast.error(error);
-		}
-
 		toast.error('Something went wrong...');
 	};
 
