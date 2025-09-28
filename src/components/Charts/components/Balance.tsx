@@ -39,7 +39,7 @@ export const Balance: React.FC<ChartProps> = ({ data }) => (
 						content={<ChartTooltipContent indicator="line" />}
 						cursor={false}
 					/>
-					<Bar dataKey="summary.balance" fill="var(--chart-3)" radius={4} />
+					<Bar dataKey="balance" fill="var(--chart-3)" radius={4} />
 				</BarChart>
 			</ChartContainer>
 		</CardContent>

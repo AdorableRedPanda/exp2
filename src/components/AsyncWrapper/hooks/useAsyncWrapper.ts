@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { isRedirectError } from 'next/dist/client/components/redirect-error';
 import { useRouter } from 'next/navigation';
 
 import type { ActionKeys } from '@/components/AsyncWrapper/types';
@@ -10,8 +11,19 @@ export const useAsyncWrapper = () => {
 	const router = useRouter();
 	const [loaders, setLoaders] = useState<ActionKeys[]>([]);
 
-	const onError = () => toast.error('Something went wrong...');
+	const onError = (error: unknown) => {
+		if (isRedirectError(error)) {
+			return;
+		}
+
+		const errorInstance = error instanceof Error;
+
+		const message = errorInstance ? error.message : 'Something went wrong...';
+		toast.error(message);
+	};
+
 	const onSuccess = () => {
+		toast.success('Action completed successfully!');
 		router.refresh();
 	};
 

@@ -8,6 +8,8 @@ import type { LoginData } from '@/types';
 
 import { prisma } from '@/server/prisma';
 
+import { TOKEN_COOKIE } from '../constants';
+
 export async function loginAction(loginData: LoginData, formData: FormData) {
 	const email = formData.get('email')?.toString() || '';
 	const password = formData.get('password')?.toString() || '';
@@ -25,7 +27,7 @@ export async function loginAction(loginData: LoginData, formData: FormData) {
 
 	const cookieStore = await cookies();
 
-	cookieStore.set('token', user.token, { path: '/' });
+	cookieStore.set(TOKEN_COOKIE, user.token, { path: '/' });
 
 	redirect('/');
 

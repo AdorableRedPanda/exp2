@@ -28,7 +28,7 @@ import { SavingRateConfig } from '../constants';
 import { ChartCard } from './ChartCard';
 
 export const SavingRate: React.FC<ChartProps> = ({ data }) => {
-	const average = getAverage(data.map((t) => t.summary.savingRate));
+	const average = getAverage(data.map((t) => t.savingRate));
 	const description = `Balance as % of income by month, average - ${Math.round(average)}%`;
 
 	return (
@@ -53,7 +53,7 @@ export const SavingRate: React.FC<ChartProps> = ({ data }) => {
 							label="savingRate"
 						/>
 						<Bar
-							dataKey="summary.savingRate"
+							dataKey="savingRate"
 							fill="var(--chart-3)"
 							radius={[4, 4, 0, 0]}
 						/>

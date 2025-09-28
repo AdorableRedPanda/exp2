@@ -1,10 +1,11 @@
-import type { useAsyncWrapper } from './hooks';
+import type { useActionsValue } from './hooks';
 
 export type ActionKeys =
 	| 'deleting'
+	| 'logout'
 	| 'parsing'
 	| 'settings'
 	| 'updating'
 	| 'uploading';
 
-export type AsyncContext = ReturnType<typeof useAsyncWrapper>;
+export type AsyncContext = ReturnType<typeof useActionsValue>;

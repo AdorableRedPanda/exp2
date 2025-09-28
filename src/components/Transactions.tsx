@@ -8,16 +8,19 @@ import type { SettingsDto } from '@/types';
 import { cn } from '@/shadcn/utils';
 
 import { AppHeader } from './AppHeader';
-import { Charts } from './Charts';
 import { ClientContexts } from './ClientContexts';
 import { ListPanel } from './ListPanel';
 
-interface Props {
+interface Props extends React.PropsWithChildren {
 	settings: SettingsDto;
 	transactions: TransactionsGroup[];
 }
 
-export const Transactions: React.FC<Props> = ({ settings, transactions }) => (
+export const Transactions: React.FC<Props> = ({
+	children,
+	settings,
+	transactions,
+}) => (
 	<ClientContexts settings={settings}>
 		<main className="m-auto h-full w-full grid grid-rows-[auto_1fr] bg-muted overflow-hidden">
 			<AppHeader />
@@ -38,7 +41,7 @@ export const Transactions: React.FC<Props> = ({ settings, transactions }) => (
 						'lg:flex-1',
 					)}
 				>
-					<Charts transactions={transactions} />
+					{children}
 				</div>
 			</div>
 		</main>
