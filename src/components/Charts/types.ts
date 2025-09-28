@@ -1,5 +1,5 @@
-import type { TransactionsGroup } from '@/server/get';
+import type { GroupSummary } from '@/server/get';
 
 export interface ChartProps {
-	data: TransactionsGroup[];
+	data: GroupSummary[];
 }

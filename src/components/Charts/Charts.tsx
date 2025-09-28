@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const Charts: React.FC<Props> = ({ transactions }) => {
-	const data = transactions.toReversed();
+	const data = transactions.toReversed().map((t) => t.summary);
 	return (
 		<div className="p-2 w-full flex flex-col gap-2 overflow-auto">
 			<SavingRate data={data} />
