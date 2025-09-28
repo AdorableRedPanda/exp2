@@ -22,7 +22,7 @@ export async function loginAction(loginData: LoginData, formData: FormData) {
 	const valid = argon2.verify(user?.passwordHash || '', password);
 
 	if (!valid || !user) {
-		throw new Error('Email or password is incorrect');
+		throw 'Email or password is incorrect';
 	}
 
 	const cookieStore = await cookies();

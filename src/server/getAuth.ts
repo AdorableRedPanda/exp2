@@ -10,7 +10,7 @@ export const getAuth = async () => {
 	const user = await prisma.user.findFirst({ where: { token } });
 
 	if (!user) {
-		throw new Error('Not authenticated');
+		throw 'Not authenticated';
 	}
 
 	return user;

@@ -10,12 +10,12 @@ import { parseType } from './parseType';
 
 export const parseTxnData = (t: unknown): TransactionData => {
 	if (!isObject(t)) {
-		throw new Error('Invalid input format');
+		throw 'Invalid input format';
 	}
 
 	const rawAmount = parseAmount(t.amount);
 	if (!isValidAmount(rawAmount)) {
-		throw new Error('Cannot parse amount');
+		throw 'Cannot parse amount';
 	}
 
 	const date = t.date ? parseDate(t.date) : new Date();
