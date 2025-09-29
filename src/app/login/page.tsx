@@ -9,15 +9,16 @@ import { loginAction } from '@/server/actions';
 
 const init: LoginData = {
 	email: '',
+	error: '',
 	password: '',
 };
 
 export default function Login() {
-	const [_, formAction, loading] = useActionState(loginAction, init);
+	const [state, formAction, loading] = useActionState(loginAction, init);
 
 	return (
 		<div className="w-full h-full flex items-center justify-center">
-			<LoginForm action={formAction} loading={loading} />
+			<LoginForm action={formAction} loading={loading} state={state} />
 		</div>
 	);
 }

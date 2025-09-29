@@ -10,7 +10,13 @@ import { prisma } from '@/server/prisma';
 
 import { TOKEN_COOKIE } from '../constants';
 
-export async function loginAction(loginData: LoginData, formData: FormData) {
+const MAX_AGE = 60 * 60 * 24 * 30;
+const CookieOpts = { httpOnly: true, maxAge: MAX_AGE, path: '/' };
+
+export async function loginAction(
+	_state: LoginData,
+	formData: FormData,
+): Promise<LoginData> {
 	const email = formData.get('email')?.toString() || '';
 	const password = formData.get('password')?.toString() || '';
 
@@ -22,14 +28,12 @@ export async function loginAction(loginData: LoginData, formData: FormData) {
 	const valid = argon2.verify(user?.passwordHash || '', password);
 
 	if (!valid || !user) {
-		throw new Error('Email or password is incorrect');
+		return { email, error: 'Email or password is incorrect', password };
 	}
 
 	const cookieStore = await cookies();
 
-	cookieStore.set(TOKEN_COOKIE, user.token, { path: '/' });
+	cookieStore.set(TOKEN_COOKIE, user.token, CookieOpts);
 
-	redirect('/');
-
-	return loginData;
+	return redirect('/');
 }
