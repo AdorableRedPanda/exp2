@@ -5,7 +5,7 @@ Simple expense tracker with AI-powered transaction parsing.
 
 Test account:
 - Email: `user@user.com`
-  - Password: `user@user.com`
+- Password: `user@user.com`
 
 ### Transaction details
 Each transaction has:

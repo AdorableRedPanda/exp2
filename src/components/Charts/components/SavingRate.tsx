@@ -40,20 +40,6 @@ export const SavingRate: React.FC<ChartProps> = ({ data }) => {
 			<CardContent>
 				<ChartContainer config={SavingRateConfig}>
 					<BarChart data={data} height={400} width={800}>
-						<defs>
-							<linearGradient id="balanceGradient" x1="0" x2="0" y1="0" y2="1">
-								<stop
-									offset="5%"
-									stopColor="var(--chart-3)"
-									stopOpacity={0.8}
-								/>
-								<stop
-									offset="95%"
-									stopColor="var(--chart-3)"
-									stopOpacity={0.4}
-								/>
-							</linearGradient>
-						</defs>
 						<CartesianGrid strokeDasharray="3 3" vertical={false} />
 						<XAxis axisLine={false} dataKey="label" tickMargin={10} />
 						<YAxis
@@ -68,6 +54,7 @@ export const SavingRate: React.FC<ChartProps> = ({ data }) => {
 						/>
 						<Bar
 							dataKey="savingRate"
+							// todo: fix global balanceGradient usage
 							fill="url(#balanceGradient)"
 							radius={[4, 4, 0, 0]}
 						/>
