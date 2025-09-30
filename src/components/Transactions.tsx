@@ -2,8 +2,7 @@
 
 import type React from 'react';
 
-import type { TransactionsGroup } from '@/server/get';
-import type { SettingsDto } from '@/types';
+import type { SettingsDto, Transaction } from '@/types';
 
 import { cn } from '@/shadcn/utils';
 
@@ -13,8 +12,20 @@ import { ListPanel } from './ListPanel';
 
 interface Props extends React.PropsWithChildren {
 	settings: SettingsDto;
-	transactions: TransactionsGroup[];
+	transactions: Transaction[];
 }
+
+const PanelContainerCls = cn(
+	'w-full h-full shrink-0 overflow-auto snap-start',
+	'md:w-2/5',
+	'lg:w-[380px] lg:shrink-0',
+);
+
+const ChildContainerCls = cn(
+	'snap-start w-full shrink-0 overflow-auto',
+	'md:w-3/5',
+	'lg:flex-1',
+);
 
 export const Transactions: React.FC<Props> = ({
 	children,
@@ -25,24 +36,10 @@ export const Transactions: React.FC<Props> = ({
 		<main className="m-auto h-full w-full grid grid-rows-[auto_1fr] bg-muted overflow-hidden">
 			<AppHeader />
 			<div className="flex w-full h-full overflow-x-auto md:overflow-x-hidden snap-x">
-				<div
-					className={cn(
-						'w-full h-full shrink-0 overflow-auto snap-start',
-						'md:w-2/5',
-						'lg:w-[380px] lg:shrink-0',
-					)}
-				>
+				<div className={PanelContainerCls}>
 					<ListPanel transactions={transactions} />
 				</div>
-				<div
-					className={cn(
-						'snap-start w-full shrink-0 overflow-auto',
-						'md:w-3/5',
-						'lg:flex-1',
-					)}
-				>
-					{children}
-				</div>
+				<div className={ChildContainerCls}>{children}</div>
 			</div>
 		</main>
 	</ClientContexts>

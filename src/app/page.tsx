@@ -1,15 +1,15 @@
-import { Charts, Transactions } from '@/components';
-import { getMonthlyTransactions, getSettings } from '@/server/get';
+import { SummaryPanel, Transactions } from '@/components';
+import { getSettings, getTotalReport } from '@/server/get';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-	const transactions = await getMonthlyTransactions();
+	const report = await getTotalReport();
 	const settings = await getSettings();
 
 	return (
-		<Transactions settings={settings} transactions={transactions}>
-			<Charts transactions={transactions} />
+		<Transactions settings={settings} transactions={report.items}>
+			<SummaryPanel data={report} />
 		</Transactions>
 	);
 }

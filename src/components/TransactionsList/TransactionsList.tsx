@@ -1,18 +1,18 @@
 import type React from 'react';
 
-import type { TransactionsGroup } from '@/server/get';
+import type { Transaction } from '@/types';
 
-import { GroupView } from './components';
+import { TransactionView } from './components';
 
 interface Props {
-	transactions: TransactionsGroup[];
+	transactions: Transaction[];
 }
 
 export const TransactionsList: React.FC<Props> = ({ transactions }) => (
 	<ul className="list-none overflow-auto">
-		{transactions.map((g) => (
-			<li key={g.key}>
-				<GroupView group={g} />
+		{transactions.map((t) => (
+			<li className="contents" key={t.id}>
+				<TransactionView transaction={t} />
 			</li>
 		))}
 	</ul>

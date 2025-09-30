@@ -1,12 +1,12 @@
 import type React from 'react';
 
-import type { TransactionsGroup } from '@/server/get';
+import type { Transaction } from '@/types';
 
 import { InputForm } from '@/components/InputForm';
 import { TransactionsList } from '@/components/TransactionsList';
 
 interface Props {
-	transactions: TransactionsGroup[];
+	transactions: Transaction[];
 }
 
 export const ListPanel: React.FC<Props> = ({ transactions }) => (

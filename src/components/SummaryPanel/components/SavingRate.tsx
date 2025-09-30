@@ -12,7 +12,7 @@ import {
 	YAxis,
 } from 'recharts';
 
-import { getAverage } from '@/components/Charts/utils';
+import { getAverage } from '@/components/SummaryPanel/utils';
 import {
 	CardContent,
 	CardDescription,

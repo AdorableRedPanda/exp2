@@ -1,4 +1,4 @@
 export { AppHeader } from './AppHeader';
-export { Charts } from './Charts';
 export { LoginForm } from './LoginForm';
+export { SummaryPanel } from './SummaryPanel';
 export { Transactions } from './Transactions';

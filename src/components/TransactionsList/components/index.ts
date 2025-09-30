@@ -1,1 +1,1 @@
-export { GroupView } from './GroupView';
+export { TransactionView } from './TransactionView';
