@@ -19,6 +19,13 @@ export default function Login() {
 	return (
 		<div className="w-full h-full flex items-center justify-center">
 			<LoginForm action={formAction} loading={loading} state={state} />
+
+			<a
+				className="absolute bottom-3 underline underline-offset-2"
+				href={process.env.NEXT_PUBLIC_REPO_URL}
+			>
+				Information
+			</a>
 		</div>
 	);
 }
