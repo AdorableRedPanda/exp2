@@ -28,6 +28,24 @@ export const Summary: React.FC<ChartProps> = ({ data }) => (
 		<CardContent>
 			<ChartContainer config={SummaryConfig}>
 				<BarChart accessibilityLayer data={data}>
+					<defs>
+						<linearGradient id="incomeGradient" x1="0" x2="0" y1="0" y2="1">
+							<stop offset="5%" stopColor="var(--chart-3)" stopOpacity={0.9} />
+							<stop
+								offset="95%"
+								stopColor="var(--chart-3)"
+								stopOpacity={0.45}
+							/>
+						</linearGradient>
+						<linearGradient id="expenseGradient" x1="0" x2="0" y1="0" y2="1">
+							<stop offset="5%" stopColor="var(--chart-2)" stopOpacity={0.9} />
+							<stop
+								offset="95%"
+								stopColor="var(--chart-2)"
+								stopOpacity={0.45}
+							/>
+						</linearGradient>
+					</defs>
 					<CartesianGrid vertical={false} />
 					<YAxis
 						axisLine={false}
@@ -39,8 +57,8 @@ export const Summary: React.FC<ChartProps> = ({ data }) => (
 						content={<ChartTooltipContent indicator="dashed" />}
 						cursor={false}
 					/>
-					<Bar dataKey="income" fill="var(--color-income)" radius={4} />
-					<Bar dataKey="expense" fill="var(--color-expense)" radius={4} />
+					<Bar dataKey="income" fill="url(#incomeGradient)" radius={4} />
+					<Bar dataKey="expense" fill="url(#expenseGradient)" radius={4} />
 				</BarChart>
 			</ChartContainer>
 		</CardContent>

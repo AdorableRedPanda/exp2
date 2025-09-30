@@ -28,6 +28,13 @@ export const Balance: React.FC<ChartProps> = ({ data }) => (
 		<CardContent>
 			<ChartContainer config={BalanceConfig}>
 				<BarChart accessibilityLayer data={data}>
+					<defs>
+						<linearGradient id="balanceGradient" x1="0" x2="0" y1="0" y2="1">
+							<stop offset="5%" stopColor="var(--chart-3)" stopOpacity={0.8} />
+							<stop offset="95%" stopColor="var(--chart-3)" stopOpacity={0.4} />
+						</linearGradient>
+					</defs>
+
 					<CartesianGrid vertical={false} />
 					<YAxis
 						axisLine={false}
@@ -39,7 +46,7 @@ export const Balance: React.FC<ChartProps> = ({ data }) => (
 						content={<ChartTooltipContent indicator="line" />}
 						cursor={false}
 					/>
-					<Bar dataKey="balance" fill="var(--chart-3)" radius={4} />
+					<Bar dataKey="balance" fill="url(#balanceGradient)" radius={4} />
 				</BarChart>
 			</ChartContainer>
 		</CardContent>
