@@ -7,6 +7,7 @@ import type { Transaction, TransactionType } from '@/types';
 import { useOpenEdit } from '@/components/TransactionEditProvider';
 import { Badge } from '@/shadcn/components';
 import { cn } from '@/shadcn/utils';
+import { formatAmount } from '@/utils';
 
 import { getDateLabel } from '../utils';
 import { TagsView } from './TagsView';
@@ -23,6 +24,9 @@ const TextColor: Record<TransactionType, string> = {
 export const TransactionView: React.FC<Props> = ({ transaction }) => {
 	const { amount, date, tags, type } = transaction;
 
+	const sign = type === 'income' ? 1 : -1;
+	const value = formatAmount(sign * amount);
+
 	const { openEdit } = useOpenEdit(transaction);
 
 	return (
@@ -35,7 +39,7 @@ export const TransactionView: React.FC<Props> = ({ transaction }) => {
 			</div>
 			<div className="flex-0 flex flex-col items-end justify-between gap-2">
 				<div className={cn('text-sm font-semibold px-2', TextColor[type])}>
-					{amount}
+					{value}
 				</div>
 				<button
 					className="group-hover:opacity-100 sm:opacity-0 duration-400 transition cursor-pointer p-1"

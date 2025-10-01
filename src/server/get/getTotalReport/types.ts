@@ -18,6 +18,7 @@ export interface TotalReport {
 export interface TotalSummary {
 	averageExpenses: number;
 	averageSaving: number;
+	balance: number;
 	income: number;
 	medianExpenses: number;
 }
