@@ -2,11 +2,10 @@ import type React from 'react';
 
 import type { ActionHandler, LoginData } from '@/types';
 
-import { EmailInput } from '@/components/EmailInput';
-import { PasswordInput } from '@/components/PasswordInput';
-
+import { EmailInput } from './EmailInput';
 import { FormCard } from './FormCard';
 import { LoadingButton } from './LoadingButton';
+import { PasswordInput } from './PasswordInput';
 
 interface Props {
 	action: ActionHandler<FormData>;
@@ -14,10 +13,10 @@ interface Props {
 	state: LoginData;
 }
 
-const title = 'Login to your account';
-const DefaultDescription = 'Enter your email below to login to your account';
+const title = 'Create new account';
+const DefaultDescription = 'Enter email and password to create a new account';
 
-export const LoginForm: React.FC<Props> = ({ action, loading, state }) => {
+export const SignUpForm: React.FC<Props> = ({ action, loading, state }) => {
 	const error = !!state.error;
 	const description = error ? state.error : DefaultDescription;
 
@@ -26,10 +25,9 @@ export const LoginForm: React.FC<Props> = ({ action, loading, state }) => {
 			<form action={action}>
 				<div className="flex flex-col gap-6">
 					<EmailInput value={state.email} />
-					<PasswordInput value={state.email} />
-
+					<PasswordInput value={state.email} visible />
 					<LoadingButton className="w-full" loading={loading} type="submit">
-						Login
+						Create Account
 					</LoadingButton>
 				</div>
 			</form>
