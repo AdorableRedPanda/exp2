@@ -1,4 +1,5 @@
 export { deleteTransaction } from './deleteTransaction';
+export { deleteUser } from './deleteUser';
 export { loginAction } from './loginAction';
 export { logoutAction } from './logoutAction';
 export { parseInput } from './parseInput';

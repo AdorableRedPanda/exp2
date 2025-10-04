@@ -4,39 +4,27 @@ import type { SettingsDto } from '@/types';
 
 import { useActionLoaders, useAsyncActions } from '@/components/AsyncWrapper';
 import { LoadingButton } from '@/components/LoadingButton';
+import { UserPart } from '@/components/SettingsProvider/components/UserPart';
+import { useUpdateSettings } from '@/components/SettingsProvider/hooks';
 import { TagsInput } from '@/components/TransactionForm/components';
-import { Input, Label } from '@/shadcn/components';
+import { Label } from '@/shadcn/components';
 
 interface Props {
 	settings: SettingsDto;
 }
 
 export const SettingsForm: React.FC<Props> = ({ settings }) => {
-	const [loading] = useActionLoaders('settings');
-	const { updateSettings } = useAsyncActions();
-
-	const onSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		const form = e.target as HTMLFormElement;
-		const formData = new FormData(form);
-		const value = formData.get('tags') as string;
-		updateSettings(value.split(','));
-	};
+	const { loading, onSubmit } = useUpdateSettings();
+	const { deleteUser } = useAsyncActions();
+	const [deleting] = useActionLoaders('user_deleting');
 
 	return (
 		<form className="grid gap-4" onSubmit={onSubmit}>
-			<div className="flex gap-2">
-				<Label htmlFor="email">Email</Label>
-				<Input
-					disabled
-					name="email"
-					placeholder="m@example.com"
-					readOnly
-					required
-					type="email"
-					value={settings.email}
-				/>
-			</div>
+			<UserPart
+				email={settings.email}
+				loading={deleting}
+				onDelete={deleteUser}
+			/>
 			<div className="flex flex-col gap-2">
 				<Label htmlFor="tags">Preferred tags</Label>
 				<TagsInput value={settings.tags} />

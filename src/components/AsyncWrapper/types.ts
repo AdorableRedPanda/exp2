@@ -6,6 +6,7 @@ export type ActionKeys =
 	| 'parsing'
 	| 'settings'
 	| 'updating'
-	| 'uploading';
+	| 'uploading'
+	| 'user_deleting';
 
 export type AsyncContext = ReturnType<typeof useActionsValue>;
