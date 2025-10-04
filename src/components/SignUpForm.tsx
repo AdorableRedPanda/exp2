@@ -1,6 +1,10 @@
 import type React from 'react';
 
+import Link from 'next/link';
+
 import type { ActionHandler, LoginData } from '@/types';
+
+import { Button } from '@/shadcn/components';
 
 import { EmailInput } from './EmailInput';
 import { FormCard } from './FormCard';
@@ -26,9 +30,16 @@ export const SignUpForm: React.FC<Props> = ({ action, loading, state }) => {
 				<div className="flex flex-col gap-6">
 					<EmailInput value={state.email} />
 					<PasswordInput value={state.email} visible />
-					<LoadingButton className="w-full" loading={loading} type="submit">
-						Create Account
-					</LoadingButton>
+					<div className="flex gap-2 w-full justify-end">
+						<Link href="/login">
+							<Button type="button" variant="link">
+								Login
+							</Button>
+						</Link>
+						<LoadingButton loading={loading} type="submit">
+							Create account
+						</LoadingButton>
+					</div>
 				</div>
 			</form>
 		</FormCard>

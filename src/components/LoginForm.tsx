@@ -1,9 +1,12 @@
 import type React from 'react';
 
+import Link from 'next/link';
+
 import type { ActionHandler, LoginData } from '@/types';
 
 import { EmailInput } from '@/components/EmailInput';
 import { PasswordInput } from '@/components/PasswordInput';
+import { Button } from '@/shadcn/components';
 
 import { FormCard } from './FormCard';
 import { LoadingButton } from './LoadingButton';
@@ -28,9 +31,16 @@ export const LoginForm: React.FC<Props> = ({ action, loading, state }) => {
 					<EmailInput value={state.email} />
 					<PasswordInput value={state.email} />
 
-					<LoadingButton className="w-full" loading={loading} type="submit">
-						Login
-					</LoadingButton>
+					<div className="flex gap-2 w-full justify-end">
+						<Link href="/sign-up">
+							<Button type="button" variant="link">
+								Sign up
+							</Button>
+						</Link>
+						<LoadingButton loading={loading} type="submit">
+							Login
+						</LoadingButton>
+					</div>
 				</div>
 			</form>
 		</FormCard>
