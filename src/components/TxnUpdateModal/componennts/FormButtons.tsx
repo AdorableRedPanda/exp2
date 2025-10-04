@@ -1,46 +1,26 @@
 import type React from 'react';
-import { useState } from 'react';
 
-import { Save, Trash2 } from 'lucide-react';
+import { Save } from 'lucide-react';
 
 import type { ActionHandler } from '@/types';
 
 import { useActionLoaders } from '@/components/AsyncWrapper';
+import { ConfirmedDelete } from '@/components/ConfirmedDelete';
 import { LoadingButton } from '@/components/LoadingButton';
-import { Button } from '@/shadcn/components';
-
-import { DeletingMode } from './DeletingMode';
 
 interface Props {
 	onDelete: ActionHandler;
 }
 
 export const FormButtons: React.FC<Props> = ({ onDelete }) => {
-	const [deleteMode, setMode] = useState(false);
-	const toggleDelete = () => setMode((mode) => !mode);
-
 	const [deleting, updating] = useActionLoaders('deleting', 'updating');
 	const disabled = deleting || updating;
 
-	if (deleteMode) {
-		return (
-			<DeletingMode
-				disabled={disabled}
-				loading={deleting}
-				onCancel={toggleDelete}
-				onDelete={onDelete}
-			/>
-		);
-	}
-
 	return (
-		<div className="w-full flex gap-2 justify-end items-center">
-			<Button onClick={toggleDelete} variant="destructive">
-				<Trash2 />
-			</Button>
+		<ConfirmedDelete disabled={disabled} loading={deleting} onDelete={onDelete}>
 			<LoadingButton loading={updating}>
 				<Save />
 			</LoadingButton>
-		</div>
+		</ConfirmedDelete>
 	);
 };

@@ -1,0 +1,1 @@
+export { ConfirmedDelete } from './ConfirmedDelete';

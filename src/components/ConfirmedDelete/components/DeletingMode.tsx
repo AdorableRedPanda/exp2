@@ -8,6 +8,7 @@ import { LoadingButton } from '@/components/LoadingButton';
 import { Button } from '@/shadcn/components';
 
 interface Props {
+	className?: string;
 	disabled: boolean;
 	loading: boolean;
 	onCancel: ActionHandler;
@@ -22,10 +23,10 @@ export const DeletingMode: React.FC<Props> = ({
 	onCancel,
 	onDelete,
 }) => (
-	<div className="w-full flex gap-2 justify-end items-center">
-		<div className="text-destructive flex gap-1 flex-1 items-center justify-end">
+	<div className="w-full flex gap-2 items-center">
+		<div className="text-destructive p-1 flex gap-1 flex-1 items-center justify-end">
 			<AlertCircleIcon size={16} />
-			{DeleteMessage}
+			<span className="flex-1 block">{DeleteMessage}</span>
 		</div>
 		<LoadingButton
 			disabled={disabled}

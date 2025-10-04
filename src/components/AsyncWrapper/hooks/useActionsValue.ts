@@ -1,5 +1,6 @@
 import {
 	deleteTransaction as _deleteTransaction,
+	deleteUser as _deleteUser,
 	logoutAction as _logoutAction,
 	parseInput as _parseInput,
 	updateSettings as _updateSettings,
@@ -18,9 +19,11 @@ export const useActionsValue = () => {
 	const uploadFiles = withLoader('uploading', _uploadFiles);
 	const updateSettings = withLoader('settings', _updateSettings);
 	const logoutAction = withLoader('logout', _logoutAction);
+	const deleteUser = withLoader('user_deleting', _deleteUser);
 
 	return {
 		deleteTransaction,
+		deleteUser,
 		loaders,
 		logoutAction,
 		parseInput,
