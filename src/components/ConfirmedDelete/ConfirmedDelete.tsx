@@ -6,10 +6,12 @@ import { Trash2 } from 'lucide-react';
 import type { ActionHandler } from '@/types';
 
 import { Button } from '@/shadcn/components';
+import { cn } from '@/shadcn/utils';
 
 import { DeletingMode } from './components';
 
 interface Props extends React.PropsWithChildren {
+	className?: string;
 	disabled?: boolean;
 	loading: boolean;
 	onDelete: ActionHandler;
@@ -17,6 +19,7 @@ interface Props extends React.PropsWithChildren {
 
 export const ConfirmedDelete: React.FC<Props> = ({
 	children,
+	className = '',
 	disabled = false,
 	loading,
 	onDelete,
@@ -36,7 +39,9 @@ export const ConfirmedDelete: React.FC<Props> = ({
 	}
 
 	return (
-		<div className="flex gap-2 items-center w-full justify-end">
+		<div
+			className={cn('flex gap-2 items-center w-full justify-end', className)}
+		>
 			{children}
 			<Button onClick={toggleDelete} variant="destructive">
 				<Trash2 />

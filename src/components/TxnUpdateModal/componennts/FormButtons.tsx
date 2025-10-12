@@ -17,7 +17,12 @@ export const FormButtons: React.FC<Props> = ({ onDelete }) => {
 	const disabled = deleting || updating;
 
 	return (
-		<ConfirmedDelete disabled={disabled} loading={deleting} onDelete={onDelete}>
+		<ConfirmedDelete
+			className="flex-row-reverse justify-start"
+			disabled={disabled}
+			loading={deleting}
+			onDelete={onDelete}
+		>
 			<LoadingButton loading={updating}>
 				<Save />
 			</LoadingButton>
